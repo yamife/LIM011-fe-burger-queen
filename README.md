@@ -2,7 +2,7 @@
 
 ## Preámbulo
 
-[React](https://reactjs.org/) y [Angular](https://angular.io/)
+[React](https://reactjs.org/), [Vue](https://es.vuejs.org/index.html) y [Angular](https://angular.io/)
 son algunos de los _frameworks_ y _librerías_ de JavaScript más utilizados por
 lxs desarrolladorxs alrededor del mundo, y hay una razón para eso.
 En el contexto del navegador, [_mantener la interfaz sincronizada con el estado
@@ -85,7 +85,7 @@ costo total.
 ## Objetivos de aprendizaje
 
 1. El objetivo principal de es aprender a construir una _interfaz web_ usando
-el _framework_ elegido (React o Angular) o vanilla JS. Todos estos frameworks de
+el _framework_ elegido ([React](https://reactjs.org/), [Vue](https://es.vuejs.org/index.html) o [Angular](https://angular.io/)) o vanilla JS. Todos estos frameworks de
 Front-end atacan el mismo problema: **cómo mantener la interfaz y el estado
 sincronizados**. Así que esta experiencia espera familiarizarte con el concepto
 de _estado de pantalla_, y cómo cada cambio sobre el estado se va a
@@ -146,6 +146,12 @@ pendientes de tu proyecto anterior.
 - [ ] [`CSS` modules](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet)
 - [ ] [React Router](https://reacttraining.com/react-router/web)
 
+
+
+### Vue
+
+
+
 ### Firebase
 
 - [ ] Firestore
@@ -189,7 +195,7 @@ hasta la historia que puedas en el tiempo especificado.
 La lógica del proyecto debe estar implementada completamente en JavaScript
 (ES6+), HTML y CSS y empaquetada de manera automatizada.
 En este proyecto Sí está permitido usar librerías o frameworks
-(debes elegir entre [React](https://reactjs.org/),
+(debes elegir entre [React](https://reactjs.org/), [Vue](https://es.vuejs.org/index.html),
 [Angular](https://angular.io/) o Vanilla Js).
 
 La aplicación debe ser un _Single Page App_. Los pedidos los tomaremos desde una
@@ -294,6 +300,7 @@ rápidamente a los clientes que las hicieron.
 
 * [React](https://reactjs.org/)
 * [Angular](https://angular.io/)
+* [Vue](https://es.vuejs.org/index.html)
 
 ### Herramientas
 
