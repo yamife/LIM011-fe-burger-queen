@@ -150,6 +150,18 @@ pendientes de tu proyecto anterior.
 
 ### Vue
 
+- [Instancia de Vue.js](https://es.vuejs.org/v2/guide/instance.html)
+- [Datos y métodos]()
+- [Uso y creación de Componentes](https://vuejs.org/v2/guide/components.html)
+- [Props](https://es.vuejs.org/v2/guide/components.html#Pasando-datos-a-componentes-secundarios-con-Props)
+- Directivas (v-bind]() | [v-model]())
+- Renderizado condicional ([v-if]() | [v-else]())
+- Iteraciones ([v-for]())
+- Eventos ([v-on]())
+- [Propiedades Computadas y Observadores]()
+- [Router]()
+- [Manejo de estado - Vuex]()
+- [Clases y Estilos](https://es.vuejs.org/v2/guide/class-and-style.html)
 
 
 ### Firebase
