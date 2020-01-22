@@ -160,7 +160,6 @@ pendientes de tu proyecto anterior.
 - Eventos ([v-on](https://es.vuejs.org/v2/guide/events.html))
 - [Propiedades Computadas y Observadores](https://es.vuejs.org/v2/guide/computed.html)
 - [Router](https://router.vuejs.org/guide/#html)
-- [Manejo de estado - Vuex]()
 - [Clases y Estilos](https://es.vuejs.org/v2/guide/class-and-style.html)
 
 
