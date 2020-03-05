@@ -1,5 +1,5 @@
 import React from 'react';
-
+import img from '../img/logo.png'
 
 class Header extends React.Component {
     render(){
@@ -7,10 +7,10 @@ class Header extends React.Component {
             <header>
                 <nav className="navbar navbar-light bg-light">
                     <a className="navbar-brand" href="./">
-                        <img src="logo.png" width="30" height="30" className="d-inline-block align-top" alt="" />Burger Queen
+                        <img src={img} width="30" height="30" className="d-inline-block align-top" alt="" />Burger Queen
                     </a>
 
-                    <ul class="nav nav-pills nav-end">
+                    <ul className="nav nav-pills nav-end">
                     <li className="nav-item">
                         <a className="nav-link active" href="./">Inicio</a>
                     </li>
