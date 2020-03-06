@@ -1,18 +1,15 @@
 import React from 'react';
 
-
 class Tabs extends React.Component {
     
     constructor(props){
       super(props);
       this.clickTabs = this.clickTabs.bind(this);  
     }
-
     clickTabs(name, e) {
         e.preventDefault();
         console.log('entras aqui', name);
-    }
-    
+    }  
     render() {
 
         return (
