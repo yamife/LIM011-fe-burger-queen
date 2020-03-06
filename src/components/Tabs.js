@@ -8,7 +8,7 @@ class Tabs extends React.Component {
       this.clickTabs = this.clickTabs.bind(this);  
     }
 
-    clickTabs(name, e) {
+    clickTabs(e, name) {
         e.preventDefault();
         console.log('entras aqui', name);
     }
@@ -17,20 +17,21 @@ class Tabs extends React.Component {
 
         return (
             <ul className="nav nav-pills">
-                <li className="nav-item" onClick= {(e) => {this.clickTabs('Desayuno', e.preventDefault())}}>
+                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'Desayuno')}}>
                     <a className="nav-link active" href="./">Desayuno</a>
                 </li>
-                <li className="nav-item" onClick= {(e) => {this.clickTabs('Hamburguesas', e.preventDefault())}}>
+                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'Hamburguesas')}}>
                     <a className="nav-link" href="./">Hamburguesas</a>
                 </li>
-                <li className="nav-item" onClick= {(e) => {this.clickTabs('Acompañamiento', e.preventDefault())}}>
+                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'Acompañamiento')}}>
                     <a className="nav-link" href="./">Acompañamiento</a>
                 </li>
-                <li className="nav-item" onClick= {(e) => {this.clickTabs('Bebidas', e.preventDefault())}}>
+                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'Bebidas')}}>
                     <a className="nav-link" href="./">Bebidas</a>
                 </li>
             </ul>
         );
     }
 }
+
 export default Tabs;
