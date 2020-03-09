@@ -6,7 +6,7 @@ export const getProducts = (category) => {
 
     query.get().then((snapShots) => {
       snapShots.forEach((element) => {
-        console.log(element);
+        console.log(element.data().nameProduct);
       });
     });
 }
