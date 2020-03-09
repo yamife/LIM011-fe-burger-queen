@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const firebaseConfig = {
@@ -10,6 +10,9 @@ const firebaseConfig = {
         messagingSenderId: "290627068866",
         appId: "1:290627068866:web:067a2d77377a8a4db5ac5b"
       };
+
 firebase.initializeApp(firebaseConfig);
 
-export default firebase;
+const db = firebase.firestore();
+
+export default db;

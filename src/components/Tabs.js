@@ -1,5 +1,6 @@
 import React from 'react';
-import firebase from '../firebase/controller';
+// import db from '../firebase/controller';
+import {getProducts} from '../firebase/firestore'
 
 class Tabs extends React.Component {
     
@@ -11,12 +12,14 @@ class Tabs extends React.Component {
     clickTabs(e, name) {
         e.preventDefault();
         console.log('entras aqui', name);
+        getProducts(name);
     }  
+
     render() {
 
         return (
             <ul className="nav nav-pills">
-                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'Desayuno')}}>
+                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'breakfast')}}>
                     <a className="nav-link active" href="./">Desayuno</a>
                 </li>
                 <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'Hamburguesas')}}>
