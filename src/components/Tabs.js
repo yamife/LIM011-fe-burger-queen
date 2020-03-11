@@ -1,6 +1,8 @@
 import React from 'react';
 // import db from '../firebase/controller';
-import {getProducts} from '../firebase/firestore'
+import { getProducts } from '../firebase/firestore';
+import { ItemMenu } from '../components/Menu';
+import Menu from '../components/Menu.js';
 
 class Tabs extends React.Component {
     
@@ -9,11 +11,17 @@ class Tabs extends React.Component {
       this.clickTabs = this.clickTabs.bind(this);  
     }
 
+
     clickTabs(e, name) {
         e.preventDefault();
         console.log('entras aqui', name);
-        getProducts(name);
+        getProducts(name).then((docs) => {
+            docs.forEach((product) => {
+                ItemMenu(product.data().nameProduct);
+            });
+        }).catch(error => console.log(error));
     }  
+
 
     render() {
 
@@ -21,14 +29,15 @@ class Tabs extends React.Component {
             <ul className="nav nav-pills">
                 <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'breakfast')}}>
                     <a className="nav-link active" href="./">Desayuno</a>
+                    <Menu></Menu>
                 </li>
-                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'Hamburguesas')}}>
+                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'burger')}}>
                     <a className="nav-link" href="./">Hamburguesas</a>
                 </li>
-                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'Acompañamiento')}}>
+                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'sideDish')}}>
                     <a className="nav-link" href="./">Acompañamiento</a>
                 </li>
-                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'Bebidas')}}>
+                <li className="nav-item" onClick= {(e) => {this.clickTabs(e, 'drinks')}}>
                     <a className="nav-link" href="./">Bebidas</a>
                 </li>
             </ul>
