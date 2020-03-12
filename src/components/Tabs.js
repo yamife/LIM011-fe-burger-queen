@@ -1,44 +1,19 @@
 import React from 'react';
 // import db from '../firebase/controller';
 import { getProducts } from '../firebase/firestore';
+// import itemMenu from './Menu';
 
 class Tabs extends React.Component {
 
-  constructor(props) {
-    super(props);
-    // this.getData = this.getData.bind(this);
+  constructor() {
+    super();
+    this.state = {arr: []};
     this.clickTabs = this.clickTabs.bind(this);
   }
 
-  // getData(name){
-  //     getProducts(name).then((snapShots) => {
-  //         const array = [];
-  //         snapShots.forEach((e) => {
-  //             array.push({
-  //                 Producto: Element.data().nameProuct,
-  //                 Precio: Element.data().price,
-  //             })
-  //         })
-  //         return array;
-  //     })
-  // }
-
-  clickTabs(e, name) {
-    e.preventDefault();
-    console.log('entras aqui', name);
-    getProducts(name).then((snapShots) => {
-      const array = [];
-      snapShots.forEach((e) => {
-        array.push({
-          id: e.id,
-          category: e.data().category,
-          product: e.data().nameProduct,
-          price: e.data().price,
-          type: (e.data().type) ? e.data().type : null,
-        })
-      })
-      console.log(array);
-    })
+  clickTabs(category) {
+    getProducts(category)
+    .then(data => console.log(data));
   }
 
   render() {
@@ -59,10 +34,10 @@ class Tabs extends React.Component {
       //     </li>
       // </ul>
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-success">Desayuno</button>
-        <button type="button" class="btn btn-warning">Hamburguesas</button>
-        <button type="button" class="btn btn-danger">Acompañamiento</button>
-        <button type="button" class="btn btn-info">Bebidas</button>
+        <button type="button" class="btn btn-success" onClick = {() => {this.clickTabs('breakfast')}}>Desayuno</button>
+        <button type="button" class="btn btn-warning" onClick = {() => {this.clickTabs('burger')}}>Hamburguesas</button>
+        <button type="button" class="btn btn-danger" onClick = {() => {this.clickTabs('sideDish')}}>Acompañamiento</button>
+        <button type="button" class="btn btn-info" onClick = {() => {this.clickTabs('drinks')}}>Bebidas</button>
       </div>
     );
   }
