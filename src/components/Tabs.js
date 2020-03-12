@@ -6,7 +6,6 @@ class Tabs extends React.Component {
     
     constructor(props){
       super(props);
-      this.state = {menu: []}
       // this.getData = this.getData.bind(this);
       this.clickTabs = this.clickTabs.bind(this);  
     }
