@@ -1,6 +1,7 @@
 import db from './controller';
 
 export const getProducts = (category) => {
+  console.log('getProducts')
   return db.collection('products').where('category', '==', category).get()
   .then((response) => {
     const arr = [];
@@ -10,6 +11,7 @@ export const getProducts = (category) => {
         ...doc.data()
       };
       arr.push(obj);
+      console.log('estamos aqui');
     });
     return arr;
   })

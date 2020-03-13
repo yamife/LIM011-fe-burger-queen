@@ -3,7 +3,6 @@ import React from 'react';
 // import './App.css';
 import Header from './components/Header';
 import Tabs from './components/Tabs';
-import Menu from './components/Menu';
 
 // import { getProducts } from './firebase/firestore.js';
 
@@ -13,7 +12,6 @@ function App() {
     <div>
       <Header />
       <Tabs />
-      <Menu />
     </div>
   );
 }
