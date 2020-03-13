@@ -4,7 +4,6 @@ import React from 'react';
 import Header from './components/Header';
 import Tabs from './components/Tabs';
 
-// import { getProducts } from './firebase/firestore.js';
 
 function App() {
  // getProducts('breakfast');
