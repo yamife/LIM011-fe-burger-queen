@@ -5,14 +5,19 @@ const Items = (props) => {
   const products = props.products;
   const clickProduct = props.clickProduct;
 
-  const lista = products.map((objProduct) =>
-    <tr key ={objProduct.id} onClick={() => clickProduct(objProduct.nameProduct)}>
+  const lista = products.map((product) => {
+    const productOrder = {
+      name: product.nameProduct,
+      price: product.price,
+    };
+
+    return <tr key ={product.id} onClick={() => clickProduct(productOrder)}>
       <th>
-          <p>{objProduct.nameProduct}</p>
-          <p>{objProduct.price}</p>
+          <p>{product.nameProduct}</p>
+          <p>{product.price}</p>
       </th>
     </tr>
-  );
+  });
 
   return (
     <table className="table">

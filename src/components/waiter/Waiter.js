@@ -23,7 +23,7 @@ class Waiter extends React.Component {
   }
 
   clickProduct(product) {
-    console.log('entro acá gggg', product);
+    console.log(product.name, product.price);
   }
 
   render() {
