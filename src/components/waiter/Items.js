@@ -1,19 +1,19 @@
 import React from 'react';
-//import db from '../Services/FirestoreConfig';
-//import getProducts from '../firebase/firestore';
+
 
 const Items = (props) => {
   const products = props.products;
+  const clickProduct = props.clickProduct;
+
   const lista = products.map((objProduct) =>
-    // <li key ={objProduct.id}>
-    //   {objProduct.nameProduct}
-    //   {objProduct.price}
-    // </li>
-    <tr key ={objProduct.id}>
-      <td>{objProduct.nameProduct}</td>
-      <td>{objProduct.price}</td>
+    <tr key ={objProduct.id} onClick={() => clickProduct(objProduct.nameProduct)}>
+      <th>
+          <p>{objProduct.nameProduct}</p>
+          <p>{objProduct.price}</p>
+      </th>
     </tr>
-  )
+  );
+
   return (
     <table className="table">
       <thead>
@@ -26,6 +26,8 @@ const Items = (props) => {
         {lista}
       </tbody>
     </table>
-  )
+  );
 }
+
+
 export default Items;
