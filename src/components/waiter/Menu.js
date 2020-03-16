@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const Menu = (props) => {
   const clickTabs = props.clickTabs;
   return (
@@ -11,5 +12,6 @@ const Menu = (props) => {
           </div>
     );
 }
+
 
 export default Menu;
