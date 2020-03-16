@@ -5,10 +5,10 @@ import React from 'react';
 const Menu = (props) => {
   const products = props.products;
   const lista = products.map((objProduct) =>
-  <li key ={objProduct.id}>
-    {objProduct.nameProduct}
-    {objProduct.price}
-  </li>
+    <li key ={objProduct.id}>
+      {objProduct.nameProduct}
+      {objProduct.price}
+    </li>
   )
   return (
     <ul>

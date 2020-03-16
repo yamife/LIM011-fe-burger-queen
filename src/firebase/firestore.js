@@ -11,7 +11,6 @@ export const getProducts = (category) => {
         ...doc.data()
       };
       arr.push(obj);
-      console.log('estamos aqui');
     });
     return arr;
   })
@@ -30,5 +29,6 @@ export const getProducts = (category) => {
         })
       });
       return array;
+      
     });
 } */
