@@ -1,25 +1,24 @@
 import React from 'react';
-//import db from '../Services/FirestoreConfig';
-//import getProducts from '../firebase/firestore';
 
 const Items = (props) => {
   const products = props.products;
+  // const clickItem = props.clickItem;
   const lista = products.map((objProduct) =>
-    // <li key ={objProduct.id}>
-    //   {objProduct.nameProduct}
-    //   {objProduct.price}
-    // </li>
     <tr key ={objProduct.id}>
       <td>{objProduct.nameProduct}</td>
+      <td>{objProduct.type !== null ? objProduct.type: '-'}</td>
       <td>{objProduct.price}</td>
+      <td><button className= 'btn btn-danger'> Agregar </button></td>
     </tr>
   )
   return (
-    <table className="table">
+    <table className="table my-2">
       <thead>
         <tr>
-          <th>Producto</th>
-          <th>Precio</th>
+          <th scope = 'col'>Producto</th>
+          <th scope = 'col'>Tipo</th>
+          <th scope = 'col'>Precio S/.</th>
+          <th scope = 'col'>Agregar</th>
         </tr>
       </thead>
       <tbody>
