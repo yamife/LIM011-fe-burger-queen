@@ -1,17 +1,18 @@
 import React from 'react';
 
 
-const Items = (props) => {
+const MenuList = (props) => {
   const products = props.products;
   const clickProduct = props.clickProduct;
 
   const lista = products.map((product) => {
     const productOrder = {
+      id: product.id,
       name: product.nameProduct,
       price: product.price,
     };
 
-    return <tr key ={product.id} onClick={() => clickProduct(productOrder)}>
+    return <tr key={product.id} onClick={() => clickProduct(productOrder)}>
       <th>
           <p>{product.nameProduct}</p>
           <p>{product.price}</p>
@@ -35,4 +36,4 @@ const Items = (props) => {
 }
 
 
-export default Items;
+export default MenuList;
