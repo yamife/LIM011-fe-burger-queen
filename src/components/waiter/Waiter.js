@@ -1,7 +1,6 @@
 import React from 'react';
 import getProducts from '../../firebase/firestore';
-import MenuTabs from './MenuTabs';
-import MenuList from './MenuList';
+import Menu from './Menu';
 import OrderTable from './OrderTable';
 
 
@@ -23,7 +22,7 @@ class Waiter extends React.Component {
   }
 
   clickProduct(product) {
-    console.log(product.name, product.price, product.id);
+    console.log(product.nameProduct, product.price, product.id);
 
     const arrayOrder = this.state.orders.concat(product);
 
@@ -32,17 +31,9 @@ class Waiter extends React.Component {
 
   render() {
     return (
-      <div className="d-flex bd-highlight">
-        <div className="p-2 flex-fill bd-highlight">
-           <MenuTabs clickTabs = {this.clickTabs}/>
-          <div>
-            <MenuList products = {this.state.products} clickProduct = {this.clickProduct}/>
-          </div>
-        </div>
-        <div className="p-2 flex-fill bd-highlight">
-          <h1>Orden</h1>
-          <OrderTable orderProduct = {this.state.orders} />
-        </div>
+      <div className="d-flex bd-highlight" id="waiter">
+        <Menu clickTabs = {this.clickTabs} products = {this.state.products} clickProduct = {this.clickProduct}/>
+        <OrderTable orderProduct = {this.state.orders} />
       </div>
     );
   }
