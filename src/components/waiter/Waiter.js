@@ -22,8 +22,6 @@ class Waiter extends React.Component {
   }
 
   clickProduct(product) {
-    console.log(product.nameProduct, product.price, product.id);
-
     const arrayOrder = this.state.orders.concat(product);
 
     this.setState({ orders: arrayOrder});

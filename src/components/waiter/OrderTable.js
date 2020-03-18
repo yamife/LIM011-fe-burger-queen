@@ -13,7 +13,7 @@ class OrderTable extends React.Component {
                 <div className="container">
                     <ul id="item-list">
                         {
-                            arrayOrder.map((order) => <ItemOrder key={order.id} value={order.name} />)
+                            arrayOrder.map((order) => <ItemOrder key={order.id} value={order.nameProduct}/>)
                         }
                     </ul>
                 </div>
