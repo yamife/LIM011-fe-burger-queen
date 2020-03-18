@@ -2,11 +2,13 @@ import React from 'react';
 
 
 const ItemMenu = (props) => {
-  console.log(props.value.nameProduct);
+  console.log(props.click);
 
   return (
-    <li>
+    <li onClick={() => props.click(props.value)}>
+      <button>
       {props.value.nameProduct} {props.value.price}
+      </button>
     </li>
   );
 }
