@@ -11,7 +11,7 @@ const ItemOrder = (props) => {
           <button>
            <FontAwesome className="fas fa-plus-circle" name="fas fa-plus-circle"/>
           </button>
-          {props.counter}
+          { props.counter }
           <button>
            <FontAwesome className="fas fa-minus-circle" name="fas fa-minus-circle"/>
           </button>
