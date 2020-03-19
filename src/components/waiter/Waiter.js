@@ -1,17 +1,20 @@
 import React from 'react';
 import getProducts from '../../firebase/firestore';
-import Menu from './Menu'
-import Items from './Items';
-import Order from './Order';
+import Menu from './Menu';
+import OrderTable from './OrderTable';
+
 
 class Waiter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { products: [] };
+
+    this.state = { products: [], orders: [] };
+
     this.clickTabs = this.clickTabs.bind(this);
-    this.clickItem = this.clickItem.bind(this);
+    this.clickProduct = this.clickProduct.bind(this);
   }
-  clickTabs(category) {
+
+  clickTabs(category){
     getProducts(category)
       .then(data => this.setState(
         { products: data }
@@ -20,19 +23,41 @@ class Waiter extends React.Component {
   clickItem(product, price){
     console.log(product, price)
   }
+
+  clickProduct(product) {
+    //const arrayOrder = this.state.orders.concat(product);
+    //this.setState((state) => ({ orders: state.orders.concat(product), clickAccount: state.clickAccount + 1}));
+    //this.setState({orders: arrayOrder, clickAccount: arrayOrder.length })
+    const newObjet = {
+      id: product.id,
+      nameProduct: product.nameProduct,
+      price: product.price,
+      quantity: 1,
+      total: 0,
+    }
+    const click = true;
+    const arrayOrder = this.state.orders.concat(newObjet);
+    const filerProduct = this.state.orders.filter((element)=> element.id === newObjet.id);
+    const mapProducts = this.state.orders.map((element) => {
+      let elementCantidad = element;
+      if(element.id === newObjet.id) {
+        if(click){
+          elementCantidad.quantity +=1;
+        }
+        elementCantidad.quantity -=1;
+      }
+      return elementCantidad;
+    });
+    // let contador = 0;
+    //this.setState((state) => ({ orders: state.orders.concat(product), clickAccount: state.clickAccount + 1}));
+    this.setState(filerProduct.length === 0?{orders: arrayOrder}: {orders: mapProducts})
+  }
+
   render() {
     return (
-      <div>
-        <div className="d-flex bd-highlight">
-          <div className=" container containerp-2 flex-fill bd-highlight">
-            <Menu clickTabs={this.clickTabs} />
-            <Items products={this.state.products} />
-          </div>
-          <div className=" container p-2 flex-fill bd-highlight">
-            <h4>Orden</h4>
-            <Order />
-          </div>
-        </div>
+      <div className="d-flex bd-highlight" id="waiter">
+        <Menu clickTabs = {this.clickTabs} products = {this.state.products} clickProduct = {this.clickProduct}/>
+        <OrderTable orderProduct = {this.state.orders} />
       </div>
     );
   }
