@@ -35,22 +35,21 @@ class Waiter extends React.Component {
       quantity: 1,
       total: 0,
     }
-    const click = true;
+    //const click = true;
     const arrayOrder = this.state.orders.concat(newObjet);
-    const filerProduct = this.state.orders.filter((element)=> element.id === newObjet.id);
+    const filterProduct = this.state.orders.filter((element)=> element.id === newObjet.id);
+
     const mapProducts = this.state.orders.map((element) => {
-      let elementCantidad = element;
+      let objectProduct = element;
       if(element.id === newObjet.id) {
-        if(click){
-          elementCantidad.quantity +=1;
-        }
-        elementCantidad.quantity -=1;
+        objectProduct.quantity +=1;
       }
-      return elementCantidad;
+      return objectProduct;
     });
+
     // let contador = 0;
     //this.setState((state) => ({ orders: state.orders.concat(product), clickAccount: state.clickAccount + 1}));
-    this.setState(filerProduct.length === 0?{orders: arrayOrder}: {orders: mapProducts})
+    this.setState(filterProduct.length === 0?{orders: arrayOrder}: {orders: mapProducts})
   }
 
   render() {

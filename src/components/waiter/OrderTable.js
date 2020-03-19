@@ -24,7 +24,7 @@ class OrderTable extends React.Component {
             </thead>
             <tbody>
               {
-                arrayOrder.map((order, index) => <ItemOrder key={index} value={order} />)
+                arrayOrder.map((order) => <ItemOrder key={order.id} value={order} />)
               }
             </tbody>
             <tr>
