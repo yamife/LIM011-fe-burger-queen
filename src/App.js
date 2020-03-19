@@ -7,7 +7,7 @@ import Tabs from './components/Tabs';
 // import { getProducts } from './firebase/firestore.js';
 
 function App() {
- // getProducts('breakfast');
+
   return (
     <div>
       <Header />
