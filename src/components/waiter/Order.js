@@ -11,7 +11,7 @@ class Order extends React.Component {
               <th scope = 'col'>Producto</th>
               <th scope = 'col'>Precio</th>
             </tr>
-          </thead>Huevo	-	1
+          </thead>
           <tbody>
             <tr>
             <td ><button>+</button>1<button>-</button></td>
