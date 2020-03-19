@@ -13,7 +13,7 @@ const MenuList = (props) => {
       <h1>Menú</h1>
       <div>
           <ul id="item-list">
-              {listOrder}
+              <h1>{listOrder}</h1>
           </ul>
       </div>
     </div>

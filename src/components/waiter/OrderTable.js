@@ -32,7 +32,7 @@ class OrderTable extends React.Component {
                 <th scope='col'></th>
                 <th scope='col'><h2>Total</h2></th>
                 <th scope='col'><h2>S/. xxx</h2></th>
-                <th scope='col'><button>enviar</button></th>
+                <th scope='col'><button className="btn btn-info"><h5>enviar</h5></button></th>
               </tr>
 
           </table>
