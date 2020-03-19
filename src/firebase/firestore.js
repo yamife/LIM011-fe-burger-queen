@@ -1,6 +1,6 @@
 import db from './controller';
 
-export const getProducts = (category) => {
+const getProducts = (category) => {
   console.log('getProducts')
   return db.collection('products').where('category', '==', category).get()
   .then((response) => {
@@ -15,20 +15,5 @@ export const getProducts = (category) => {
     });
     return arr;
   })
-
 };
-
-/* export const getProducts = (category) => {
-    const docProducts = db.collection('products');
-    const query = docProducts.where('category', '==', category);
-    query.get().then((snapShots) => {
-      const array = [];
-      snapShots.forEach((element) => {
-        array.push({
-          Producto: element.data().nameProduct,
-          Precio: element.data().price,
-        })
-      });
-      return array;
-    });
-} */
+export default getProducts;

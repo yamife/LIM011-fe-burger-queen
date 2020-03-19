@@ -2,16 +2,14 @@ import React from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 import Header from './components/Header';
-import Tabs from './components/Tabs';
-
-// import { getProducts } from './firebase/firestore.js';
+import Waiter from './components/waiter/Waiter';
 
 function App() {
-
-  return (
+ // getProducts('breakfast');
+  return(
     <div>
       <Header />
-      <Tabs />
+      <Waiter />
     </div>
   );
 }
