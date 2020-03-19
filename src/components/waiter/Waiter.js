@@ -5,7 +5,7 @@ import OrderList from './OrderList';
 
 
 class Waiter extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = { products: [], orders: [] };
@@ -16,15 +16,44 @@ class Waiter extends React.Component {
 
   clickTabs(category){
     getProducts(category)
-    .then (data => this.setState(
-      {products: data}
-    ));
+      .then(data => this.setState(
+        { products: data }
+      ));
+  }
+
+  clickItem(product, price){
+    console.log(product, price)
   }
 
   clickProduct(product) {
-    const arrayOrder = this.state.orders.concat(product);
+    const findProduct = this.state.orders.find((element)=> element.id === product.id);
 
-    this.setState({ orders: arrayOrder});
+    if(findProduct){
+      const mapProducts = this.state.orders.map((order) => {
+        if(order.id === product.id) {
+          const counter = order.quantity += 1;
+
+          order.total = counter * order.price;
+        }
+
+        order.total = order.quantity * order.price;
+
+        return order;
+      });
+
+      this.setState({orders: mapProducts});
+    }
+    else {
+      const newOrder = {
+        id: product.id,
+        nameProduct: product.nameProduct,
+        price: product.price,
+        quantity: 1,
+        total: product.price,
+      }
+      const arrayOrder = this.state.orders.concat(newOrder);
+      this.setState({orders: arrayOrder});
+    }
   }
 
   render() {
@@ -36,6 +65,5 @@ class Waiter extends React.Component {
     );
   }
 }
-
 
 export default Waiter;

@@ -1,25 +1,16 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
-
+// import FontAwesome from 'react-fontawesome';
 
 const ItemOrder = (props) => {
-  
+
   return (
-    <li>
-      <article>
-        <div>
-          <button>
-           <FontAwesome className="fas fa-plus-circle" name="fas fa-plus-circle"/>
-          </button>
-          {props.counter}
-          <button>
-           <FontAwesome className="fas fa-minus-circle" name="fas fa-minus-circle"/>
-          </button>
-        </div>
-        <p>{ props.value.nameProduct }</p>
-        <p>{ props.value.price }</p>
-      </article>
-    </li>
+    <tr>
+      <td><button className="btn btn-outline-danger btn-sm">+</button>{props.value.quantity}<button className="btn btn-outline-danger btn-sm">-</button></td>
+      <td>{props.value.nameProduct}</td>
+      <td>S/.{props.value.price}</td>
+      <td>S/.{props.value.total}</td>
+      <td><button  className="btn btn-danger">eliminar</button></td>
+    </tr>
   );
 }
 

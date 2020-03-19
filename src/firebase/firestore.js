@@ -11,7 +11,7 @@ const getProducts = (category) => {
         id: doc.id,
         ...doc.data()
       };
-      
+
       arr.push(obj);
     });
 
