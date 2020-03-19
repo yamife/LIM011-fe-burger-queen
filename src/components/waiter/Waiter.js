@@ -33,7 +33,7 @@ class Waiter extends React.Component {
       nameProduct: product.nameProduct,
       price: product.price,
       quantity: 1,
-      total: 0,
+      total: product.price,
     }
     //const click = true;
     const arrayOrder = this.state.orders.concat(newObjet);
@@ -42,8 +42,10 @@ class Waiter extends React.Component {
     const mapProducts = this.state.orders.map((element) => {
       let objectProduct = element;
       if(element.id === newObjet.id) {
-        objectProduct.quantity +=1;
+        const contador = objectProduct.quantity +=1;
+        objectProduct.total = contador * objectProduct.price;
       }
+      objectProduct.total = objectProduct.quantity * objectProduct.price;
       return objectProduct;
     });
 
