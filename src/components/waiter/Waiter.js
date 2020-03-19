@@ -20,38 +20,40 @@ class Waiter extends React.Component {
         { products: data }
       ));
   }
+
   clickItem(product, price){
     console.log(product, price)
   }
 
   clickProduct(product) {
-    //const arrayOrder = this.state.orders.concat(product);
-    //this.setState((state) => ({ orders: state.orders.concat(product), clickAccount: state.clickAccount + 1}));
-    //this.setState({orders: arrayOrder, clickAccount: arrayOrder.length })
-    const newObjet = {
-      id: product.id,
-      nameProduct: product.nameProduct,
-      price: product.price,
-      quantity: 1,
-      total: product.price,
+    const findProduct = this.state.orders.find((element)=> element.id === product.id);
+
+    if(findProduct){
+      const mapProducts = this.state.orders.map((order) => {
+        if(order.id === product.id) {
+          const counter = order.quantity += 1;
+
+          order.total = counter * order.price;
+        }
+
+        order.total = order.quantity * order.price;
+
+        return order;
+      });
+
+      this.setState({orders: mapProducts});
     }
-    //const click = true;
-    const arrayOrder = this.state.orders.concat(newObjet);
-    const filterProduct = this.state.orders.filter((element)=> element.id === newObjet.id);
-
-    const mapProducts = this.state.orders.map((element) => {
-      let objectProduct = element;
-      if(element.id === newObjet.id) {
-        const contador = objectProduct.quantity +=1;
-        objectProduct.total = contador * objectProduct.price;
+    else {
+      const newOrder = {
+        id: product.id,
+        nameProduct: product.nameProduct,
+        price: product.price,
+        quantity: 1,
+        total: product.price,
       }
-      objectProduct.total = objectProduct.quantity * objectProduct.price;
-      return objectProduct;
-    });
-
-    // let contador = 0;
-    //this.setState((state) => ({ orders: state.orders.concat(product), clickAccount: state.clickAccount + 1}));
-    this.setState(filterProduct.length === 0?{orders: arrayOrder}: {orders: mapProducts})
+      const arrayOrder = this.state.orders.concat(newOrder);
+      this.setState({orders: arrayOrder});
+    }
   }
 
   render() {

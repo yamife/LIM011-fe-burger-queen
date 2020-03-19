@@ -4,21 +4,22 @@ import ItemOrder from './ItemOrder';
 
 class OrderTable extends React.Component {
 
+
   render() {
     const arrayOrder = this.props.orderProduct;
     console.log(arrayOrder);
 
     return (
       <section className="p-2 flex-fill bd-highlight">
-        <h1>Orden</h1>
         <div className="container">
+        <h1>Registro de Pedidos</h1>
           <table className="table">
             <thead>
               <tr>
                 <th scope='col'>Cantidad</th>
                 <th scope='col'>Producto</th>
                 <th scope='col'>Precio</th>
-                <th scope='col'>Total</th>
+                <th scope='col'>Sub Total</th>
                 <th scope='col'></th>
               </tr>
             </thead>
@@ -26,15 +27,14 @@ class OrderTable extends React.Component {
               {
                 arrayOrder.map((order) => <ItemOrder key={order.id} value={order} />)
               }
+              <tr>
+                <td></td>
+                <td></td>
+                <td><h2>Total</h2></td>
+                <td><h2>S/. </h2></td>
+                <td><button className="btn btn-info"><h5>enviar</h5></button></td>
+            </tr>
             </tbody>
-            <tr>
-                <th scope='col'></th>
-                <th scope='col'></th>
-                <th scope='col'><h2>Total</h2></th>
-                <th scope='col'><h2>S/. xxx</h2></th>
-                <th scope='col'><button className="btn btn-info"><h5>enviar</h5></button></th>
-              </tr>
-
           </table>
         </div>
       </section>
