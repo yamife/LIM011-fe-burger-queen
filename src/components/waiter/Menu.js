@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 
 const Menu = (props) => {
   const clickTabs = props.clickTabs;
@@ -12,4 +13,24 @@ const Menu = (props) => {
     );
 }
 
+=======
+import MenuTabs from './MenuTabs';
+import MenuList from './MenuList';
+
+
+const Menu = (props) => {
+    const clickTabs = props.clickTabs;
+    const products = props.products;
+    const clickProduct = props.clickProduct;
+
+    return (
+        <section className="p-2 flex-fill bd-highlight">
+            <MenuTabs clickTabs = { clickTabs }/>
+            <MenuList products = { products } clickProduct = { clickProduct }/>
+        </section>
+    );
+}
+
+
+>>>>>>> fd0574830bb69875fdd28a4b13ea9aadff782a84
 export default Menu;
