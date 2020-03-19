@@ -1,7 +1,7 @@
 import React from 'react';
 import getProducts from '../../firebase/firestore';
 import Menu from './Menu';
-import OrderTable from './OrderTable';
+import OrderList from './OrderList';
 
 
 class Waiter extends React.Component {
@@ -31,7 +31,7 @@ class Waiter extends React.Component {
     return (
       <div className="d-flex bd-highlight" id="waiter">
         <Menu clickTabs = {this.clickTabs} products = {this.state.products} clickProduct = {this.clickProduct}/>
-        <OrderTable orderProduct = {this.state.orders} />
+        <OrderList orderProduct = {this.state.orders} />
       </div>
     );
   }
