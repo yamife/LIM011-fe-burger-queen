@@ -27,20 +27,20 @@ class Waiter extends React.Component {
 
     if(pos !== -1) {
 
-      console.log('producto ya está en la lista');
+      console.log('producto ya está en la lista', pos);
+
+      const element = this.state.orders.find(element => element.id === product.id)
 
       const order = {
         id: product.id,
         nameProduct: product.nameProduct,
         price: product.price,
-        counter: product.counter ++,
+        counter: element.counter += 1,
       }
 
-      this.state.orders.splice(pos, 1);
+      this.state.orders.splice(pos, 1, order);
 
-      const arrayOrder = this.state.orders.concat(order);
-
-      this.setState({ orders: arrayOrder});
+      this.setState({ orders: this.state.orders});
     }
     else {
 
