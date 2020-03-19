@@ -2,26 +2,22 @@ import React from 'react';
 import ItemOrder from './ItemOrder';
 
 
-class OrderTable extends React.Component {
+class OrderList extends React.Component {
 
     render() {
         const arrayOrder = this.props.orderProduct;
-        let counter = 1;
+        console.log(arrayOrder);
 
         return (
             <section className="p-2 flex-fill bd-highlight">
                 <h1>Orden</h1>
                 <div className="container">
                     <ul id="item-list">
-                        {
+                        {   
                           arrayOrder.map((order) => {
-                            if(arrayOrder.indexOf(order) > 0) {
-                                counter += 1;
+                              console.log(order);
 
-                                return <ItemOrder key={order.id} value={order} counter={counter}/>;
-                            }
-
-                            return <ItemOrder key={order.id} value={order} counter={counter}/>;
+                            return <ItemOrder key={order.id} value={order} counter={order.counter}/>;
                           })
                         }
                     </ul>
@@ -32,4 +28,4 @@ class OrderTable extends React.Component {
 }
 
 
-export default OrderTable; 
+export default OrderList; 

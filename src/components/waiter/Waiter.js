@@ -22,9 +22,39 @@ class Waiter extends React.Component {
   }
 
   clickProduct(product) {
-    const arrayOrder = this.state.orders.concat(product);
 
-    this.setState({ orders: arrayOrder});
+    const pos = this.state.orders.findIndex(element => element.id === product.id);
+
+    if(pos !== -1) {
+
+      console.log('producto ya está en la lista');
+
+      const order = {
+        id: product.id,
+        nameProduct: product.nameProduct,
+        price: product.price,
+        counter: product.counter ++,
+      }
+
+      this.state.orders.splice(pos, 1);
+
+      const arrayOrder = this.state.orders.concat(order);
+
+      this.setState({ orders: arrayOrder});
+    }
+    else {
+
+      const order = {
+        id: product.id,
+        nameProduct: product.nameProduct,
+        price: product.price,
+        counter: 1,
+      }
+
+      const arrayOrder = this.state.orders.concat(order);
+
+      this.setState({ orders: arrayOrder});
+    }
   }
 
   render() {
