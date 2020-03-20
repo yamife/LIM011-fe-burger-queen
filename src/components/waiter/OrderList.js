@@ -4,9 +4,22 @@ import ItemOrder from './ItemOrder';
 
 class OrderTable extends React.Component {
 
+ /*  constructor(){
+    super();
+    this.props.orderProduct = {counter: 8};
+    this.add = this.add.bind(this);
+  }
+  add(){
+    console.log('hola');
+    const newCounter = this.state.counter +1;
+    this.setState({counter: newCounter})
+  } */
 
   render() {
     const arrayOrder = this.props.orderProduct;
+    const clickItem = this.props.clickItem;
+    const clickDelete = this.props.clickDelete;
+    //const clickAdd = this.props.clickAdd;
     console.log(arrayOrder);
 
     return (
@@ -25,7 +38,7 @@ class OrderTable extends React.Component {
             </thead>
             <tbody>
               {
-                arrayOrder.map((order) => <ItemOrder key={order.id} value={order} />)
+                arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickItem = {clickItem} clickDelete= {clickDelete}/>)
               }
               <tr>
                 <td></td>
@@ -36,6 +49,10 @@ class OrderTable extends React.Component {
             </tr>
             </tbody>
           </table>
+          {/* <div>
+          <h1>HOLAA</h1>
+          <p>{this.state.counter}</p><button onClick={this.add}>suma</button>
+        </div> */}
         </div>
       </section>
     );
