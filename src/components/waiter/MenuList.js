@@ -12,9 +12,9 @@ const MenuList = (props) => {
     <div className="container">
       <h1>Menú</h1>
       <div>
-          <ul id="item-list">
-              <h1>{listOrder}</h1>
-          </ul>
+        <ul id="item-list">
+          <h1>{listOrder}</h1>
+        </ul>
       </div>
     </div>
   );

@@ -2,11 +2,11 @@ import React from 'react';
 import ItemOrder from './ItemOrder';
 
 
-class OrderTable extends React.Component {
-
+class OrderList extends React.Component {
 
   render() {
     const arrayOrder = this.props.orderProduct;
+    const clickButtonSubtrack = this.props.clickButtonSubtrack;
     console.log(arrayOrder);
 
     return (
@@ -25,7 +25,7 @@ class OrderTable extends React.Component {
             </thead>
             <tbody>
               {
-                arrayOrder.map((order) => <ItemOrder key={order.id} value={order} />)
+                arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickButtonSubtrack = { clickButtonSubtrack }/>)
               }
               <tr>
                 <td></td>
@@ -43,4 +43,4 @@ class OrderTable extends React.Component {
 }
 
 
-export default OrderTable;
+export default OrderList;
