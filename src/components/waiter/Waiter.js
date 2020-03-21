@@ -12,7 +12,9 @@ class Waiter extends React.Component {
 
     this.clickTabs = this.clickTabs.bind(this);
     this.clickProduct = this.clickProduct.bind(this);
+    this.clickButtonAdd = this.clickButtonAdd.bind(this);
     this.clickButtonSubtrack = this.clickButtonSubtrack.bind(this);
+    this.clickButtonDelete = this.clickButtonDelete.bind(this);
   }
 
   clickTabs(category) {
@@ -23,11 +25,11 @@ class Waiter extends React.Component {
   }
 
   clickProduct(product) {
-    const findProduct = this.state.orders.find((element)=> element.id === product.id);
+    const findProduct = this.state.orders.find((element) => element.id === product.id);
 
-    if(findProduct){
+    if (findProduct) {
       const mapProducts = this.state.orders.map((order) => {
-        if(order.id === product.id) {
+        if (order.id === product.id) {
           const counter = order.quantity += 1;
 
           order.total = counter * order.price;
@@ -51,18 +53,38 @@ class Waiter extends React.Component {
 
       const arrayOrder = this.state.orders.concat(newOrder);
 
-      this.setState({orders: arrayOrder});
+      this.setState({ orders: arrayOrder });
     }
   }
 
-  clickButtonSubtrack(product) {
-    console.log(product);
+  clickButtonAdd(idOrder) {
+    const findOrder = this.state.orders.find(order => order.id === idOrder);
 
-    const findProduct = this.state.orders.find((element)=> element.id === product.id);
+    if (findOrder) {
+      const mapOrders = this.state.orders.map((order) => {
+        if (order.id === idOrder) {
+          const counter = order.quantity += 1;
+
+          order.total = counter * order.price;
+        }
+
+      order.total = order.quantity * order.price;
+
+      return order;
+      });
+
+    this.setState({ orders: mapOrders });
+    }
+  }
+
+
+  clickButtonSubtrack(idOrder) {
+
+    const findProduct = this.state.orders.find((element)=> element.id === idOrder);
 
     if(findProduct.quantity >= 1){
       const mapProducts = this.state.orders.map((order) => {
-        if(order.id === product.id) {
+        if(order.id === idOrder) {
           const counter = order.quantity -= 1;
 
           order.total = counter * order.price;
@@ -88,11 +110,23 @@ class Waiter extends React.Component {
 
   }
 
+  clickButtonDelete(idOrder) {
+    const orders = this.state.orders;
+
+    const findProduct = orders.find((element)=> element.id === idOrder);
+
+    const position = orders.findIndex((element)=> element.id === findProduct.id);
+
+    orders.splice(position, 1);
+
+    this.setState({ orders: orders });
+  }
+
   render() {
     return (
       <div className="d-flex bd-highlight" id="waiter">
-        <Menu clickTabs = { this.clickTabs } products = { this.state.products } clickProduct = { this.clickProduct }/>
-        <OrderList orderProduct = { this.state.orders } clickButtonSubtrack = { this.clickButtonSubtrack }/>
+        <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} />
+        <OrderList orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} />
       </div>
     );
   }

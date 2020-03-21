@@ -6,7 +6,9 @@ class OrderList extends React.Component {
 
   render() {
     const arrayOrder = this.props.orderProduct;
+    const clickButtonAdd = this.props.clickButtonAdd;
     const clickButtonSubtrack = this.props.clickButtonSubtrack;
+    const clickButtonDelete = this.props.clickButtonDelete;
     console.log(arrayOrder);
 
     return (
@@ -25,7 +27,7 @@ class OrderList extends React.Component {
             </thead>
             <tbody>
               {
-                arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickButtonSubtrack = { clickButtonSubtrack }/>)
+                arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickButtonAdd={clickButtonAdd}  clickButtonSubtrack = { clickButtonSubtrack } clickButtonDelete = {clickButtonDelete}/>)
               }
               <tr>
                 <td></td>
