@@ -4,18 +4,18 @@ import db from './controller';
 const getProducts = (category) => {
   return db.collection('products').where('category', '==', category).get()
   .then((response) => {
-    const arr = [];
+    const arrayProduct = [];
 
     response.docs.forEach(doc => {
-      const obj = {
+      const product = {
         id: doc.id,
         ...doc.data()
       };
 
-      arr.push(obj);
+      arrayProduct.push(product);
     });
 
-    return arr;
+    return arrayProduct;
   })
 };
 

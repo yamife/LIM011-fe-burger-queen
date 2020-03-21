@@ -2,24 +2,13 @@ import React from 'react';
 import ItemOrder from './ItemOrder';
 
 
-class OrderTable extends React.Component {
-
- /*  constructor(){
-    super();
-    this.props.orderProduct = {counter: 8};
-    this.add = this.add.bind(this);
-  }
-  add(){
-    console.log('hola');
-    const newCounter = this.state.counter +1;
-    this.setState({counter: newCounter})
-  } */
+class OrderList extends React.Component {
 
   render() {
     const arrayOrder = this.props.orderProduct;
-    const clickItem = this.props.clickItem;
-    const clickDelete = this.props.clickDelete;
-    //const clickAdd = this.props.clickAdd;
+    const clickButtonAdd = this.props.clickButtonAdd;
+    const clickButtonSubtrack = this.props.clickButtonSubtrack;
+    const clickButtonDelete = this.props.clickButtonDelete;
     console.log(arrayOrder);
 
     return (
@@ -38,7 +27,9 @@ class OrderTable extends React.Component {
             </thead>
             <tbody>
               {
-                arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickItem = {clickItem} clickDelete= {clickDelete}/>)
+
+                arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickButtonAdd={clickButtonAdd}  clickButtonSubtrack = { clickButtonSubtrack } clickButtonDelete = {clickButtonDelete}/>)
+
               }
               <tr>
                 <td></td>
@@ -49,10 +40,7 @@ class OrderTable extends React.Component {
             </tr>
             </tbody>
           </table>
-          {/* <div>
-          <h1>HOLAA</h1>
-          <p>{this.state.counter}</p><button onClick={this.add}>suma</button>
-        </div> */}
+
         </div>
       </section>
     );
@@ -60,4 +48,5 @@ class OrderTable extends React.Component {
 }
 
 
-export default OrderTable;
+export default OrderList;
+

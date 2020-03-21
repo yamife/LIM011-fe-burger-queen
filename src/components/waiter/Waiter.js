@@ -12,8 +12,11 @@ class Waiter extends React.Component {
 
     this.clickTabs = this.clickTabs.bind(this);
     this.clickProduct = this.clickProduct.bind(this);
-    this.clickItem = this.clickItem.bind(this);
-    this.clickDelete = this.clickDelete.bind(this);
+
+    this.clickButtonAdd = this.clickButtonAdd.bind(this);
+    this.clickButtonSubtrack = this.clickButtonSubtrack.bind(this);
+    this.clickButtonDelete = this.clickButtonDelete.bind(this);
+
   }
 
   clickTabs(category) {
@@ -25,6 +28,7 @@ class Waiter extends React.Component {
 
   clickProduct(product) {
     const findProduct = this.state.orders.find((element) => element.id === product.id);
+
     if (findProduct) {
       const mapProducts = this.state.orders.map((order) => {
         if (order.id === product.id) {
@@ -48,62 +52,88 @@ class Waiter extends React.Component {
         quantity: 1,
         total: product.price,
       }
+
       const arrayOrder = this.state.orders.concat(newOrder);
+
+
       this.setState({ orders: arrayOrder });
     }
   }
-  clickItem(id, operador) {
-    const findOrder = this.state.orders.find(order => order.id === id);
+
+  clickButtonAdd(idOrder) {
+    const findOrder = this.state.orders.find(order => order.id === idOrder);
+
     if (findOrder) {
       const mapOrders = this.state.orders.map((order) => {
-        if (order.id === id) {
-          switch (operador) {
-            case 'suma': {
-              const counter = order.quantity += 1;
-              order.total = counter * order.price;
-            };
-              break;
-            case 'resta': {
-              const counter = order.quantity -= 1;
-              order.total = counter * order.price;
-            }
-              break;
-            default:
-              break;
-          }
+        if (order.id === idOrder) {
+          const counter = order.quantity += 1;
+
+          order.total = counter * order.price;
         }
-        order.total = order.quantity * order.price;
-        return order;
+
+      order.total = order.quantity * order.price;
+
+      return order;
       });
-      this.setState({ orders: mapOrders });
+
+    this.setState({ orders: mapOrders });
     }
   }
-  clickDelete(id) {
-    const findOrder = this.state.orders.find(order => order.id === id);
-    const posOrder = this.state.orders.indexOf(findOrder);
-    const deleteOrder = this.state.orders.splice(posOrder, 1);
-    // const newArrayOrder = [];
-    // this.setState({orders: newArrayOrder});
-  }
-  // const posOrder = this.state.orders.indexOf(findOrder);
-  // console.log(posOrder);
-  // const newQuantity = this.state.orders[posOrder].quantity + 1;
 
-  // const deleteOrder = this.state.orders.splice(posOrder,1);
-  // console.log(delOrder);
+
+  clickButtonSubtrack(idOrder) {
+    const findProduct = this.state.orders.find((element)=> element.id === idOrder);
+
+    if(findProduct.quantity >= 1){
+      const mapProducts = this.state.orders.map((order) => {
+        if(order.id === idOrder) {
+          const counter = order.quantity -= 1;
+
+          order.total = counter * order.price;
+        }
+
+        order.total = order.quantity * order.price;
+
+        return order;
+      });
+
+      this.setState({ orders: mapProducts });
+    }
+
+    if(findProduct.quantity === 0){
+      const orders = this.state.orders;
+
+      const position = orders.findIndex((element)=> element.id === findProduct.id);
+
+      orders.splice(position, 1);
+
+      this.setState({ orders: orders });
+    }
+
+  }
+
+  clickButtonDelete(idOrder) {
+    const orders = this.state.orders;
+
+    const findProduct = orders.find((element)=> element.id === idOrder);
+
+    const position = orders.findIndex((element)=> element.id === findProduct.id);
+
+    orders.splice(position, 1);
+
+    this.setState({ orders: orders });
+  }
 
   render() {
     return (
       <div className="d-flex bd-highlight" id="waiter">
         <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} />
-        <OrderList orderProduct={this.state.orders} clickItem={this.clickItem} clickDelete={this.clickDelete} />
-        {/*         <div>
-          <h1>HOLAA</h1>
-          {this.counter}<button onClick = {this.clickAdd(this.counter)}>suma</button>
-        </div> */}
+        <OrderList orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} />
+
       </div>
     );
   }
 }
+
 
 export default Waiter;
