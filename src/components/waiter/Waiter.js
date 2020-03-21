@@ -12,9 +12,11 @@ class Waiter extends React.Component {
 
     this.clickTabs = this.clickTabs.bind(this);
     this.clickProduct = this.clickProduct.bind(this);
+
     this.clickButtonAdd = this.clickButtonAdd.bind(this);
     this.clickButtonSubtrack = this.clickButtonSubtrack.bind(this);
     this.clickButtonDelete = this.clickButtonDelete.bind(this);
+
   }
 
   clickTabs(category) {
@@ -53,6 +55,7 @@ class Waiter extends React.Component {
 
       const arrayOrder = this.state.orders.concat(newOrder);
 
+
       this.setState({ orders: arrayOrder });
     }
   }
@@ -79,7 +82,6 @@ class Waiter extends React.Component {
 
 
   clickButtonSubtrack(idOrder) {
-
     const findProduct = this.state.orders.find((element)=> element.id === idOrder);
 
     if(findProduct.quantity >= 1){
@@ -127,6 +129,7 @@ class Waiter extends React.Component {
       <div className="d-flex bd-highlight" id="waiter">
         <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} />
         <OrderList orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} />
+
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+// import FontAwesome from 'react-fontawesome';
 
 
 const ItemOrder = (props) => {
@@ -16,6 +17,5 @@ const ItemOrder = (props) => {
     </tr>
   );
 }
-
 
 export default ItemOrder;

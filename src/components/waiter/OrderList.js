@@ -27,7 +27,9 @@ class OrderList extends React.Component {
             </thead>
             <tbody>
               {
+
                 arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickButtonAdd={clickButtonAdd}  clickButtonSubtrack = { clickButtonSubtrack } clickButtonDelete = {clickButtonDelete}/>)
+
               }
               <tr>
                 <td></td>
@@ -38,6 +40,7 @@ class OrderList extends React.Component {
             </tr>
             </tbody>
           </table>
+
         </div>
       </section>
     );
@@ -46,3 +49,4 @@ class OrderList extends React.Component {
 
 
 export default OrderList;
+
