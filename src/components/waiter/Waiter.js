@@ -8,7 +8,7 @@ class Waiter extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { products: [], orders: [], counter: 0 };
+    this.state = { products: [], orders: [] };
 
     this.clickTabs = this.clickTabs.bind(this);
     this.clickProduct = this.clickProduct.bind(this);
@@ -82,9 +82,8 @@ class Waiter extends React.Component {
     const findOrder = this.state.orders.find(order => order.id === id);
     const posOrder = this.state.orders.indexOf(findOrder);
     const deleteOrder = this.state.orders.splice(posOrder, 1);
-    console.log(deleteOrder);
-    const newArrayOrder = [...this.state.orders];
-    this.setState({orders: newArrayOrder});
+    // const newArrayOrder = [];
+    // this.setState({orders: newArrayOrder});
   }
   // const posOrder = this.state.orders.indexOf(findOrder);
   // console.log(posOrder);
