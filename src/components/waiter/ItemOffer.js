@@ -1,8 +1,7 @@
 import React from 'react';
 
 
-const ItemMenu = (props) => {
-
+const ItemOffer = (props) => {
   return (
     <li onClick={() => props.click(props.value)}>
       <button className="btn btn-outline-dark">
@@ -13,4 +12,4 @@ const ItemMenu = (props) => {
 }
 
 
-export default ItemMenu;
+export default ItemOffer;

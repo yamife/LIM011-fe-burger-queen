@@ -6,19 +6,19 @@ const MenuList = (props) => {
   const products = props.products;
   const clickProduct = props.clickProduct;
 
-  const listOrder = products.map((order) => <ItemMenu key={order.id} value={order} click={clickProduct} />);
+  const productFilter = products.filter((order) => order.product === true)
+  console.log(productFilter);
 
+  const listOrder = productFilter.map((order) =>
+  <ItemMenu key={order.id} value={order} click={clickProduct}/>
+  );
   return (
-    <div className="container">
-      <h1>Menú</h1>
-      <div>
+    <div>
+        <h3>Simple</h3>
         <ul id="item-list">
-          <h1>{listOrder}</h1>
+          {listOrder}
         </ul>
-      </div>
     </div>
   );
 }
-
-
 export default MenuList;

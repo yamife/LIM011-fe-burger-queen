@@ -11,10 +11,8 @@ const Menu = (props) => {
     return (
         <section className="p-2 flex-fill bd-highlight">
             <MenuTabs clickTabs = { clickTabs }/>
-            <MenuList products = { products } clickProduct = { clickProduct }/>
+            <MenuList products = { products } clickProduct = { clickProduct } />
         </section>
     );
 }
-
-
 export default Menu;
