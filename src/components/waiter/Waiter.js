@@ -8,7 +8,7 @@ class Waiter extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { products: [], orders: [] };
+    this.state = { products: [], orders: [] , offer: [] };
 
     this.clickTabs = this.clickTabs.bind(this);
     this.clickProduct = this.clickProduct.bind(this);
@@ -29,10 +29,11 @@ class Waiter extends React.Component {
 
   clickProduct(product) {
     if (product.category === 'burger') {
-      console.log('estamos en seccion hamburguesa')
+      console.log('estamos en seccion hamburguesa');
+
       getProducts(product.category)
-      .then(data => this.setState(
-        { products: data }
+        .then(data => this.setState(
+          { offer: data }
       ));
     }
     else {
@@ -138,9 +139,8 @@ class Waiter extends React.Component {
 
   render() {
     return (
-
       <main className="d-flex bd-highlight" id="waiter">
-        <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} clickOffer={this.clickOffer}/>
+        <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} clickOffer={this.clickOffer} offer={this.state.offer}/>
         <OrderList orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} />
       </main>
 
