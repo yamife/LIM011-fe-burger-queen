@@ -1,7 +1,7 @@
 import db from './controller';
 
 
-const getProducts = (category) => {
+export const getProducts = (category) => {
   return db.collection('products').where('category', '==', category).get()
   .then((response) => {
     const arrayProduct = [];
@@ -19,7 +19,7 @@ const getProducts = (category) => {
   })
 };
 
-const getOffer = (category) => {
+export const getOffers = (category) => {
   return db.collection('offers').where('category', '==', category).get()
   .then((response) => {
     const arrayOffers = [];
@@ -36,6 +36,3 @@ const getOffer = (category) => {
     return arrayOffers;
   })
 };
-
-
-export default {getProducts, getOffer};

@@ -6,14 +6,12 @@ import OfferList from './OfferList';
 const MenuList = (props) => {
   const products = props.products;
   const clickProduct = props.clickProduct;
-  const offer = props.offer;
-  console.log(offer);
+  const offers = props.offers;
+  const clickOffer = props.clickOffer;
+  console.log(offers);
 
-  const productFilter = products.filter((order) => order.product === true)
-  console.log(productFilter);
-
-  const listOrder = productFilter.map((order) =>
-  <ItemMenu key={order.id} value={order} click={clickProduct}/>
+  const listOrder = products.map((order) =>
+  <ItemMenu key = { order.id } value = { order } clickProduct = { clickProduct }/>
   );
 
   return (
@@ -24,7 +22,7 @@ const MenuList = (props) => {
         </ul>
       </div>
         {
-          (offer.length > 0) && <OfferList offer={offer}/>
+          (offers.length > 0) && <OfferList offers = { offers } clickOffer = { clickOffer }/>
         }
     </div>
   );
