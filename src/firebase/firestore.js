@@ -19,5 +19,23 @@ const getProducts = (category) => {
   })
 };
 
+const getOffer = (category) => {
+  return db.collection('offers').where('category', '==', category).get()
+  .then((response) => {
+    const arrayOffers = [];
 
-export default getProducts;
+    response.docs.forEach(doc => {
+      const offer = {
+        id: doc.id,
+        ...doc.data()
+      };
+
+      arrayOffers.push(offer);
+    });
+
+    return arrayOffers;
+  })
+};
+
+
+export default {getProducts, getOffer};
