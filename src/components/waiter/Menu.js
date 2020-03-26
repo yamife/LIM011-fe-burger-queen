@@ -8,6 +8,7 @@ const Menu = (props) => {
     const products = props.products;
     const clickProduct = props.clickProduct;
     const offers = props.offers;
+    const productOffer = props.productOffer;
     const clickOffer = props.clickOffer;
     console.log(offers);
 
@@ -15,7 +16,7 @@ const Menu = (props) => {
         <section className="p-2 flex-fill bd-highlight">
             <p>Texto está aquí.</p>
             <MenuTabs clickTabs = { clickTabs }/>
-            <MenuList products = { products } clickProduct = { clickProduct } offers = { offers } clickOffer = { clickOffer }/>
+            <MenuList products = { products } clickProduct = { clickProduct } offers = { offers } clickOffer = { clickOffer } productOffer = { productOffer }/>
         </section>
     );
 }

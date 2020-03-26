@@ -4,10 +4,11 @@ import ItemOffer from './ItemOffer';
 
 const OfferList = (props) => {
   const offers = props.offers;
+  const productOffer = props.productOffer;
   const clickOffer = props.clickOffer;
 
   const listOffers = offers.map((offer) =>
-  <ItemOffer key = { offer.id } value = { offer } clickOffer = { clickOffer }/>
+  <ItemOffer key = { offer.id } value = { offer } clickOffer = { clickOffer } productOffer = { productOffer }/>
   );
 
   return (

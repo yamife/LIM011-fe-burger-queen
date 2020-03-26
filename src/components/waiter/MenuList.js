@@ -7,6 +7,7 @@ const MenuList = (props) => {
   const products = props.products;
   const clickProduct = props.clickProduct;
   const offers = props.offers;
+  const productOffer = props.productOffer;
   const clickOffer = props.clickOffer;
   console.log(offers);
 
@@ -22,7 +23,7 @@ const MenuList = (props) => {
         </ul>
       </div>
         {
-          (offers.length > 0) && <OfferList offers = { offers } clickOffer = { clickOffer }/>
+          (offers.length > 0) && <OfferList offers = { offers } clickOffer = { clickOffer } productOffer = { productOffer }/>
         }
     </div>
   );
