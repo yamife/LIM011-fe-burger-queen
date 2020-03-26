@@ -5,10 +5,6 @@ import OrderList from './OrderList';
 
 
 const createOrder = (product, offer, state) => {
-
-  // console.log('Acáen función crear ordn gggg', product);
-  // console.log('es mi estado', state);
-
   const findProduct = state.find((element) => element.id === product.id);
 
   if (findProduct) {
@@ -56,10 +52,6 @@ const createOrder = (product, offer, state) => {
 
   const arrayOrder = state.concat(newOrder);
 
-  // this.setState({ orders: arrayOrder });
-
-  console.log(arrayOrder);
-
   return arrayOrder;
 }
 
@@ -73,12 +65,10 @@ class Waiter extends React.Component {
 
     this.clickTabs = this.clickTabs.bind(this);
     this.clickProduct = this.clickProduct.bind(this);
-
     this.clickButtonAdd = this.clickButtonAdd.bind(this);
     this.clickButtonSubtrack = this.clickButtonSubtrack.bind(this);
     this.clickButtonDelete = this.clickButtonDelete.bind(this);
     this.clickOffer = this.clickOffer.bind(this);
-
   }
 
   clickTabs(category) {
@@ -138,12 +128,10 @@ class Waiter extends React.Component {
   }
 
   clickOffer(productOffer, offer) {
-    console.log('Estamos en las ofertas', offer);
-    console.log(productOffer);
-
     const listOrder = createOrder(productOffer, offer, this.state.orders);
 
     this.setState({ orders: listOrder });
+    this.setState({ offers: [] });
   }
 
   clickButtonAdd(idOrder) {

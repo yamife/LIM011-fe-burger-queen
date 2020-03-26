@@ -8,7 +8,7 @@ const OfferList = (props) => {
   const clickOffer = props.clickOffer;
 
   const listOffers = offers.map((offer) =>
-  <ItemOffer key = { offer.id } value = { offer } clickOffer = { clickOffer } productOffer = { productOffer }/>
+    <ItemOffer key = { offer.id } value = { offer } clickOffer = { clickOffer } productOffer = { productOffer }/>
   );
 
   return (

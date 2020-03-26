@@ -9,7 +9,6 @@ const MenuList = (props) => {
   const offers = props.offers;
   const productOffer = props.productOffer;
   const clickOffer = props.clickOffer;
-  console.log(offers);
 
   const listOrder = products.map((order) =>
   <ItemMenu key = { order.id } value = { order } clickProduct = { clickProduct }/>
