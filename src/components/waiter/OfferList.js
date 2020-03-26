@@ -3,23 +3,26 @@ import ItemOffer from './ItemOffer';
 
 
 const OfferList = (props) => {
-  const offer = props.offer;
+  const offers = props.offers;
+  const productOffer = props.productOffer;
   const clickOffer = props.clickOffer;
 
-  const offerFilter = offer.filter((offer) => offer.product === false);
-  console.log(offerFilter);
-
-  const listOrder = offerFilter.map((offer) =>
-  <ItemOffer key={offer.id} value={offer} click={clickOffer}/>
+  const listOffers = offers.map((offer) =>
+    <ItemOffer key = { offer.id } value = { offer } clickOffer = { clickOffer } productOffer = { productOffer }/>
   );
 
   return (
     <div>
       <h3>Oferta</h3>
       <ul id="item-list">
-        {listOrder}
+        {listOffers}
+        <li>
+          <button className="btn btn-outline-dark">Ninguno</button>
+        </li>
       </ul>
     </div>
   );
 }
+
+
 export default OfferList;
