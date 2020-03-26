@@ -1,42 +1,69 @@
 import React from 'react';
-import  { getProducts, getOffers } from '../../firebase/firestore';
+import { getProducts, getOffers } from '../../firebase/firestore';
 import Menu from './Menu';
 import OrderList from './OrderList';
 
-/*
-const createOrder = (props, product) => {
-  const findProduct = this.state.orders.find((element) => element.id === product.id);
 
-      if (findProduct) {
-        const mapProducts = this.state.orders.map((order) => {
-          if (order.id === product.id) {
-            const counter = order.quantity += 1;
+const createOrder = (product, offer, state) => {
 
-            order.total = counter * order.price;
-          }
+  // console.log('Acáen función crear ordn gggg', product);
+  // console.log('es mi estado', state);
 
-          order.total = order.quantity * order.price;
+  const findProduct = state.find((element) => element.id === product.id);
 
-          return order;
-        });
+  if (findProduct) {
+    if (findProduct.offer) {
+      const mapProducts = state.map((order) => {
+        order.nameProduct = product.nameProduct + ' + ' + offer.nameOffer;
+        order.price = product.price + offer.price;
 
-        this.setState({ orders: mapProducts });
-      }
-      else {
-        const newOrder = {
-          id: product.id,
-          nameProduct: product.nameProduct,
-          price: product.price,
-          quantity: 1,
-          total: product.price,
+        if (order.id === product.id) {
+          const counter = order.quantity += 1;
+
+          order.total = counter * order.price;
         }
 
-        const arrayOrder = this.state.orders.concat(newOrder);
+        order.total = order.quantity * order.price;
 
-        this.setState({ orders: arrayOrder });
+        return order;
+      });
+
+      return mapProducts;
+    }
+
+    const mapProducts = state.map((order) => {
+      if (order.id === product.id) {
+        const counter = order.quantity += 1;
+
+        order.total = counter * order.price;
       }
+
+      order.total = order.quantity * order.price;
+
+      return order;
+    });
+
+    return mapProducts;
+  }
+
+  const newOrder = {
+    id: product.id,
+    nameProduct: (offer) ? product.nameProduct + ' + ' + offer.nameOffer : product.nameProduct,
+    price: (offer) ?  product.price + offer.price : product.price,
+    quantity: 1,
+    total: (offer) ? product.price + offer.price : product.price,
+  }
+
+  const arrayOrder = state.concat(newOrder);
+
+  // this.setState({ orders: arrayOrder });
+
+  console.log(arrayOrder);
+
+  return arrayOrder;
 }
-*/
+
+
 
 class Waiter extends React.Component {
   constructor(props) {
@@ -66,9 +93,10 @@ class Waiter extends React.Component {
       getOffers(product.category)
         .then(data => this.setState(
           { offers: data }
-      ));
+        ));
 
       const newProductOffer = {
+        id: product.id,
         nameProduct: product.nameProduct,
         price: product.price,
       };
@@ -109,9 +137,13 @@ class Waiter extends React.Component {
     }
   }
 
-  clickOffer(productOffer, offer){
+  clickOffer(productOffer, offer) {
     console.log('Estamos en las ofertas', offer);
     console.log(productOffer);
+
+    const listOrder = createOrder(productOffer, offer, this.state.orders);
+
+    this.setState({ orders: listOrder });
   }
 
   clickButtonAdd(idOrder) {
@@ -181,7 +213,7 @@ class Waiter extends React.Component {
   render() {
     return (
       <main className="d-flex bd-highlight" id="waiter">
-        <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} offers={this.state.offers} productOffer={this.state.productOffer}  clickOffer={this.clickOffer} />
+        <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} offers={this.state.offers} productOffer={this.state.productOffer} clickOffer={this.clickOffer} />
         <OrderList orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} />
       </main>
 
