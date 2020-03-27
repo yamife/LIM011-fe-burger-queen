@@ -137,10 +137,10 @@ class Waiter extends React.Component {
         if (order.id === product.id) {
           const counter = order.quantity -= 1;
 
-          order.total = counter * order.price;
+          order.subTotal = counter * order.price;
         }
 
-        order.total = order.quantity * order.price;
+        order.subTotal = order.quantity * order.price;
 
         return order;
       });

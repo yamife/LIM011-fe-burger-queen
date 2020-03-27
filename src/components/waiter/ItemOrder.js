@@ -12,7 +12,7 @@ const ItemOrder = (props) => {
       </td>
       <td>{props.value.nameProduct}</td>
       <td>S/.{props.value.price}</td>
-      <td>S/.{props.value.total}</td>
+      <td>S/.{props.value.subTotalf}</td>
       <td><button  className="btn btn-danger" onClick = { () => props.clickButtonDelete(props.value) }>Eliminar</button></td>
     </tr>
   );
