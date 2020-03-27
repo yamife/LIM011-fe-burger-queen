@@ -5,15 +5,14 @@ import OrderList from './OrderList';
 
 
 const createOrder = (product, offer, state) => {
-  const findProduct = state.find((element) => element.id === product.id);
 
-  if (findProduct) {
-    if (findProduct.offer) {
+  if (offer !== null) {
+    const findProductOffer = state.find((element) => element.nameProduct === (product.nameProduct + ' + ' + offer.nameOffer));
+
+    if (findProductOffer) {
       const mapProducts = state.map((order) => {
-        order.nameProduct = product.nameProduct + ' + ' + offer.nameOffer;
-        order.price = product.price + offer.price;
 
-        if (order.id === product.id) {
+        if (order.nameProduct === (product.nameProduct + ' + ' + offer.nameOffer)) {
           const counter = order.quantity += 1;
 
           order.total = counter * order.price;
@@ -27,8 +26,24 @@ const createOrder = (product, offer, state) => {
       return mapProducts;
     }
 
+    const newOrder = {
+      nameProduct: product.nameProduct + ' + ' + offer.nameOffer,
+      price: product.price + offer.price,
+      quantity: 1,
+      total: product.price + offer.price,
+    }
+
+    const arrayOrder = state.concat(newOrder);
+
+    return arrayOrder;
+  }
+
+  const findProduct = state.find((element) => element.nameProduct === product.nameProduct);
+
+  if (findProduct) {
+
     const mapProducts = state.map((order) => {
-      if (order.id === product.id) {
+      if (order.nameProduct === product.nameProduct) {
         const counter = order.quantity += 1;
 
         order.total = counter * order.price;
@@ -43,11 +58,10 @@ const createOrder = (product, offer, state) => {
   }
 
   const newOrder = {
-    id: product.id,
-    nameProduct: (offer) ? product.nameProduct + ' + ' + offer.nameOffer : product.nameProduct,
-    price: (offer) ?  product.price + offer.price : product.price,
+    nameProduct: product.nameProduct,
+    price: product.price,
     quantity: 1,
-    total: (offer) ? product.price + offer.price : product.price,
+    total: product.price,
   }
 
   const arrayOrder = state.concat(newOrder);
@@ -94,36 +108,9 @@ class Waiter extends React.Component {
       this.setState({ productOffer: newProductOffer });
     }
     else {
-      const findProduct = this.state.orders.find((element) => element.id === product.id);
+      const listOrders = createOrder(product, null, this.state.orders);
 
-      if (findProduct) {
-        const mapProducts = this.state.orders.map((order) => {
-          if (order.id === product.id) {
-            const counter = order.quantity += 1;
-
-            order.total = counter * order.price;
-          }
-
-          order.total = order.quantity * order.price;
-
-          return order;
-        });
-
-        this.setState({ orders: mapProducts });
-      }
-      else {
-        const newOrder = {
-          id: product.id,
-          nameProduct: product.nameProduct,
-          price: product.price,
-          quantity: 1,
-          total: product.price,
-        }
-
-        const arrayOrder = this.state.orders.concat(newOrder);
-
-        this.setState({ orders: arrayOrder });
-      }
+      this.setState({orders: listOrders});
     }
   }
 
@@ -134,12 +121,12 @@ class Waiter extends React.Component {
     this.setState({ offers: [] });
   }
 
-  clickButtonAdd(idOrder) {
-    const findOrder = this.state.orders.find(order => order.id === idOrder);
+  clickButtonAdd(nameProduct) {
+    const findOrder = this.state.orders.find(order => order.nameProduct === nameProduct);
 
     if (findOrder) {
       const mapOrders = this.state.orders.map((order) => {
-        if (order.id === idOrder) {
+        if (order.nameProduct === nameProduct) {
           const counter = order.quantity += 1;
 
           order.total = counter * order.price;
@@ -155,12 +142,12 @@ class Waiter extends React.Component {
   }
 
 
-  clickButtonSubtrack(idOrder) {
-    const findProduct = this.state.orders.find((element) => element.id === idOrder);
+  clickButtonSubtrack(nameProduct) {
+    const findProduct = this.state.orders.find((element) => element.nameProduct === nameProduct);
 
     if (findProduct.quantity >= 1) {
       const mapProducts = this.state.orders.map((order) => {
-        if (order.id === idOrder) {
+        if (order.nameProduct === nameProduct) {
           const counter = order.quantity -= 1;
 
           order.total = counter * order.price;
@@ -177,7 +164,7 @@ class Waiter extends React.Component {
     if (findProduct.quantity === 0) {
       const orders = this.state.orders;
 
-      const position = orders.findIndex((element) => element.id === findProduct.id);
+      const position = orders.findIndex((element) => element.nameProduct === findProduct.nameProduct);
 
       orders.splice(position, 1);
 

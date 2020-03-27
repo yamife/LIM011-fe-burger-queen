@@ -6,9 +6,9 @@ const ItemOrder = (props) => {
   return (
     <tr>
       <td>
-        <button className="btn btn-outline-danger btn-sm" onClick = { () => props.clickButtonAdd(props.value.id)}>+</button>
+        <button className="btn btn-outline-danger btn-sm" onClick = { () => props.clickButtonAdd(props.value.nameProduct)}>+</button>
         {props.value.quantity}
-        <button className="btn btn-outline-danger btn-sm" onClick = { () => props.clickButtonSubtrack(props.value.id) }>-</button>
+        <button className="btn btn-outline-danger btn-sm" onClick = { () => props.clickButtonSubtrack(props.value.nameProduct) }>-</button>
       </td>
       <td>{props.value.nameProduct}</td>
       <td>S/.{props.value.price}</td>
