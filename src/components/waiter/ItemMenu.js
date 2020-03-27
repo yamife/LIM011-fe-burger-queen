@@ -3,8 +3,8 @@ import React from 'react';
 
 const ItemMenu = (props) => {
   return (
-    <li onClick={() => props.clickProduct(props.value)}>
-      <button className="btn btn-outline-dark">
+    <li>
+      <button className="btn btn-outline-dark" onClick={() => props.clickProduct(props.value)}>
       {props.value.nameProduct} S/. {props.value.price}
       </button>
     </li>

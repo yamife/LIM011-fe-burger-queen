@@ -1,24 +1,23 @@
 import React from 'react';
 import { getProducts, getOffers } from '../../firebase/firestore';
 import Menu from './Menu';
-import OrderList from './OrderList';
-
+import RegisterOrder from './RegisterOrder';
 
 const createOrder = (product, offer, state) => {
 
   if (offer !== null) {
-    const findProductOffer = state.find((element) => element.nameProduct === (product.nameProduct + ' + ' + offer.nameOffer));
+    const findProductOffer = state.find((element) => element.id === (product.id +  offer.id));
 
     if (findProductOffer) {
       const mapProducts = state.map((order) => {
 
-        if (order.nameProduct === (product.nameProduct + ' + ' + offer.nameOffer)) {
+        if (order.id === (product.id + offer.id)) {
           const counter = order.quantity += 1;
 
-          order.total = counter * order.price;
+          order.subTotal = counter * order.price;
         }
 
-        order.total = order.quantity * order.price;
+        order.subTotal = order.quantity * order.price;
 
         return order;
       });
@@ -27,10 +26,11 @@ const createOrder = (product, offer, state) => {
     }
 
     const newOrder = {
+      id: product.id + offer.id,
       nameProduct: product.nameProduct + ' + ' + offer.nameOffer,
       price: product.price + offer.price,
       quantity: 1,
-      total: product.price + offer.price,
+      subTotal: product.price + offer.price,
     }
 
     const arrayOrder = state.concat(newOrder);
@@ -38,18 +38,18 @@ const createOrder = (product, offer, state) => {
     return arrayOrder;
   }
 
-  const findProduct = state.find((element) => element.nameProduct === product.nameProduct);
+  const findProduct = state.find((element) => element.id === product.id);
 
   if (findProduct) {
 
     const mapProducts = state.map((order) => {
-      if (order.nameProduct === product.nameProduct) {
+      if (order.id === product.id) {
         const counter = order.quantity += 1;
 
-        order.total = counter * order.price;
+        order.subTotal = counter * order.price;
       }
 
-      order.total = order.quantity * order.price;
+      order.subTotal = order.quantity * order.price;
 
       return order;
     });
@@ -58,10 +58,11 @@ const createOrder = (product, offer, state) => {
   }
 
   const newOrder = {
+    id: product.id,
     nameProduct: product.nameProduct,
     price: product.price,
     quantity: 1,
-    total: product.price,
+    subTotal: product.price,
   }
 
   const arrayOrder = state.concat(newOrder);
@@ -121,33 +122,19 @@ class Waiter extends React.Component {
     this.setState({ offers: [] });
   }
 
-  clickButtonAdd(nameProduct) {
-    const findOrder = this.state.orders.find(order => order.nameProduct === nameProduct);
+  clickButtonAdd(product) {
 
-    if (findOrder) {
-      const mapOrders = this.state.orders.map((order) => {
-        if (order.nameProduct === nameProduct) {
-          const counter = order.quantity += 1;
+    const arrayOrders = createOrder(product, null, this.state.orders);
+    this.setState({ orders: arrayOrders });
 
-          order.total = counter * order.price;
-        }
-
-        order.total = order.quantity * order.price;
-
-        return order;
-      });
-
-      this.setState({ orders: mapOrders });
-    }
   }
 
-
-  clickButtonSubtrack(nameProduct) {
-    const findProduct = this.state.orders.find((element) => element.nameProduct === nameProduct);
+  clickButtonSubtrack(product) {
+    const findProduct = this.state.orders.find((element) => element.id === product.id);
 
     if (findProduct.quantity >= 1) {
       const mapProducts = this.state.orders.map((order) => {
-        if (order.nameProduct === nameProduct) {
+        if (order.id === product.id) {
           const counter = order.quantity -= 1;
 
           order.total = counter * order.price;
@@ -164,7 +151,7 @@ class Waiter extends React.Component {
     if (findProduct.quantity === 0) {
       const orders = this.state.orders;
 
-      const position = orders.findIndex((element) => element.nameProduct === findProduct.nameProduct);
+      const position = orders.findIndex((element) => element.id === findProduct.id);
 
       orders.splice(position, 1);
 
@@ -173,10 +160,10 @@ class Waiter extends React.Component {
 
   }
 
-  clickButtonDelete(idOrder) {
+  clickButtonDelete(product) {
     const orders = this.state.orders;
 
-    const findProduct = orders.find((element) => element.id === idOrder);
+    const findProduct = orders.find((element) => element.id === product.id);
 
     const position = orders.findIndex((element) => element.id === findProduct.id);
 
@@ -189,7 +176,7 @@ class Waiter extends React.Component {
     return (
       <main className="d-flex bd-highlight" id="waiter">
         <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} offers={this.state.offers} productOffer={this.state.productOffer} clickOffer={this.clickOffer} />
-        <OrderList orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} />
+        <RegisterOrder orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete}/>
       </main>
 
     );

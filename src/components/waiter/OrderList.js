@@ -26,7 +26,7 @@ class OrderList extends React.Component {
               </thead>
               <tbody>
                 {
-                  arrayOrder.map((order) => <ItemOrder key={order.nameProduct} value={order} clickButtonAdd={clickButtonAdd}  clickButtonSubtrack = { clickButtonSubtrack } clickButtonDelete = {clickButtonDelete}/>)
+                  arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickButtonAdd={clickButtonAdd}  clickButtonSubtrack = { clickButtonSubtrack } clickButtonDelete = {clickButtonDelete}/>)
                 }
                 <tr>
                   <td></td>

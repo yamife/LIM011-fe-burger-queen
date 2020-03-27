@@ -17,7 +17,7 @@ const OfferList = (props) => {
       <ul id="item-list">
         {listOffers}
         <li>
-          <button className="btn btn-outline-dark">Ninguno</button>
+          <button className="btn btn-outline-dark" onClick={ () => props.clickOffer(props.productOffer, null) }>Ninguno</button>
         </li>
       </ul>
     </div>
