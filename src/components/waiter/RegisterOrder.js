@@ -1,6 +1,7 @@
 import React from 'react';
-import RegisterClient from './RegisterClient';
+import WaiterData from './WaiterData';
 import OrderList from './OrderList';
+
 
 class RegisterOrder extends React.Component {
 
@@ -9,14 +10,17 @@ class RegisterOrder extends React.Component {
     const clickButtonAdd = this.props.clickButtonAdd;
     const clickButtonSubtrack = this.props.clickButtonSubtrack;
     const clickButtonDelete = this.props.clickButtonDelete;
+    const totalPay = this.props.totalPay;
+
     return (
       <section>
-        <RegisterClient />
-        <OrderList orderProduct={orderProduct} clickButtonAdd={clickButtonAdd} clickButtonSubtrack={clickButtonSubtrack} clickButtonDelete={clickButtonDelete} />
+        <WaiterData />
+        <OrderList orderProduct={orderProduct} clickButtonAdd={clickButtonAdd} clickButtonSubtrack={clickButtonSubtrack} clickButtonDelete={clickButtonDelete} totalPay={totalPay}/>
       </section>
     );
   }
 
 }
+
 
 export default RegisterOrder;
