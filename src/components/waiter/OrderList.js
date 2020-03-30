@@ -9,6 +9,8 @@ class OrderList extends React.Component {
     const clickButtonAdd = this.props.clickButtonAdd;
     const clickButtonSubtrack = this.props.clickButtonSubtrack;
     const clickButtonDelete = this.props.clickButtonDelete;
+    const totalPay = this.props.totalPay;
+    console.log(totalPay);
 
     return (
       <section className="p-2 flex-fill bd-highlight">
@@ -28,15 +30,12 @@ class OrderList extends React.Component {
                 {
                   arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickButtonAdd={clickButtonAdd}  clickButtonSubtrack = { clickButtonSubtrack } clickButtonDelete = {clickButtonDelete}/>)
                 }
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td><h2>Total</h2></td>
-                  <td><h2>S/. </h2></td>
-                  <td><button className="btn btn-info"><h5>Enviar</h5></button></td>
-                </tr>
               </tbody>
             </table>
+            <div>
+              <h2>Total S/. { (totalPay) ? totalPay : 0 }</h2>
+              <button className="btn btn-info"><h5>Enviar</h5></button>
+            </div>
         </div>
       </section>
     );

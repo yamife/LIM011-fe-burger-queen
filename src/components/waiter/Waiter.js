@@ -3,6 +3,7 @@ import { getProducts, getOffers } from '../../firebase/firestore';
 import Menu from './Menu';
 import RegisterOrder from './RegisterOrder';
 
+
 const createOrder = (product, offer, state) => {
 
   if (offer !== null) {
@@ -10,16 +11,17 @@ const createOrder = (product, offer, state) => {
 
     if (findProductOffer) {
       const mapProducts = state.map((order) => {
+        const editedOrder = order;
 
         if (order.id === (product.id + offer.id)) {
-          const counter = order.quantity += 1;
+          const counter = editedOrder.quantity += 1;
 
-          order.subTotal = counter * order.price;
+          editedOrder.subTotal = counter * order.price;
         }
 
-        order.subTotal = order.quantity * order.price;
+        editedOrder.subTotal = order.quantity * order.price;
 
-        return order;
+        return editedOrder;
       });
 
       return mapProducts;
@@ -43,13 +45,15 @@ const createOrder = (product, offer, state) => {
   if (findProduct) {
 
     const mapProducts = state.map((order) => {
-      if (order.id === product.id) {
-        const counter = order.quantity += 1;
+      const editedOrder = order;
 
-        order.subTotal = counter * order.price;
+      if (order.id === product.id) {
+        const counter = editedOrder.quantity += 1;
+
+        editedOrder.subTotal = counter * order.price;
       }
 
-      order.subTotal = order.quantity * order.price;
+      editedOrder.subTotal = order.quantity * order.price;
 
       return order;
     });
@@ -76,7 +80,7 @@ class Waiter extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { products: [], orders: [], offers: [], productOffer: {} };
+    this.state = { products: [], orders: [], offers: [], productOffer: {}, total: 0 };
 
     this.clickTabs = this.clickTabs.bind(this);
     this.clickProduct = this.clickProduct.bind(this);
@@ -111,22 +115,31 @@ class Waiter extends React.Component {
     else {
       const listOrders = createOrder(product, null, this.state.orders);
 
-      this.setState({orders: listOrders});
+      const totalPay = listOrders.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal) + parseInt(currentValue.subTotal));
+      console.log(totalPay);
+
+      this.setState({ orders: listOrders });
+      this.setState({ total: totalPay });
     }
   }
 
   clickOffer(productOffer, offer) {
     const listOrder = createOrder(productOffer, offer, this.state.orders);
+    const totalPay = listOrder.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal)+ parseInt(currentValue.subTotal));
+    console.log(totalPay);
 
     this.setState({ orders: listOrder });
+    this.setState({ total: totalPay });
     this.setState({ offers: [] });
   }
 
   clickButtonAdd(product) {
-
     const arrayOrders = createOrder(product, null, this.state.orders);
-    this.setState({ orders: arrayOrders });
+    const totalPay = arrayOrders.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal) + parseInt(currentValue.subTotal));
+    console.log(totalPay);
 
+    this.setState({ orders: arrayOrders });
+    this.setState({ total: totalPay });
   }
 
   clickButtonSubtrack(product) {
@@ -134,18 +147,24 @@ class Waiter extends React.Component {
 
     if (findProduct.quantity >= 1) {
       const mapProducts = this.state.orders.map((order) => {
-        if (order.id === product.id) {
-          const counter = order.quantity -= 1;
+        const editedOrder = order;
 
-          order.subTotal = counter * order.price;
+        if (order.id === product.id) {
+          const counter = editedOrder.quantity -= 1;
+
+          editedOrder.subTotal = counter * order.price;
         }
 
-        order.subTotal = order.quantity * order.price;
+        editedOrder.subTotal = order.quantity * order.price;
 
         return order;
       });
 
+      const totalPay = mapProducts.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal) + parseInt(currentValue.subTotal));
+      console.log(totalPay);
+
       this.setState({ orders: mapProducts });
+      this.setState({ total: totalPay });
     }
 
     if (findProduct.quantity === 0) {
@@ -155,7 +174,11 @@ class Waiter extends React.Component {
 
       orders.splice(position, 1);
 
+      const totalPay = orders.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal) + parseInt(currentValue.subTotal));
+      console.log(totalPay);
+
       this.setState({ orders: orders });
+      this.setState({ total: totalPay });
     }
 
   }
@@ -169,14 +192,18 @@ class Waiter extends React.Component {
 
     orders.splice(position, 1);
 
+    const totalPay = orders.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal) + parseInt(currentValue.subTotal));
+    console.log(totalPay);
+    
     this.setState({ orders: orders });
+    this.setState({ total: totalPay });
   }
 
   render() {
     return (
       <main className="d-flex bd-highlight" id="waiter">
         <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} offers={this.state.offers} productOffer={this.state.productOffer} clickOffer={this.clickOffer} />
-        <RegisterOrder orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete}/>
+        <RegisterOrder orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} totalPay={this.state.total}/>
       </main>
 
     );
