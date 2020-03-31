@@ -10,7 +10,7 @@ class OrderList extends React.Component {
     const clickButtonSubtrack = this.props.clickButtonSubtrack;
     const clickButtonDelete = this.props.clickButtonDelete;
     const totalPay = this.props.totalPay;
-    console.log(totalPay);
+    const clickSend = this.props.clickSend;
 
     return (
       <section className="p-2 flex-fill bd-highlight">
@@ -33,8 +33,8 @@ class OrderList extends React.Component {
               </tbody>
             </table>
             <div>
-              <h2>Total S/. { (totalPay) ? totalPay : 0 }</h2>
-              <button className="btn btn-info"><h5>Enviar</h5></button>
+              <h2>Total S/. {totalPay}</h2>
+              <button className="btn btn-info" onClick = {() => clickSend()} ><h5>Enviar</h5></button>
             </div>
         </div>
       </section>

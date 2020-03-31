@@ -2,12 +2,13 @@ import React from 'react';
 import { getProducts, getOffers } from '../../firebase/firestore';
 import Menu from './Menu';
 import RegisterOrder from './RegisterOrder';
+import ModalOrder from './ModalOrder';
 
 
 const createOrder = (product, offer, state) => {
 
   if (offer !== null) {
-    const findProductOffer = state.find((element) => element.id === (product.id +  offer.id));
+    const findProductOffer = state.find((element) => element.id === (product.id + offer.id));
 
     if (findProductOffer) {
       const mapProducts = state.map((order) => {
@@ -74,13 +75,19 @@ const createOrder = (product, offer, state) => {
   return arrayOrder;
 }
 
+const totalPay = (orders) => {
+
+  let totalPay = 0;
+  orders.forEach((order => totalPay += order.subTotal));
+  return totalPay;
+}
 
 
 class Waiter extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { products: [], orders: [], offers: [], productOffer: {}, total: 0 };
+    this.state = { products: [], orders: [], offers: [], productOffer: {}, total: 0, show: false };
 
     this.clickTabs = this.clickTabs.bind(this);
     this.clickProduct = this.clickProduct.bind(this);
@@ -88,6 +95,10 @@ class Waiter extends React.Component {
     this.clickButtonSubtrack = this.clickButtonSubtrack.bind(this);
     this.clickButtonDelete = this.clickButtonDelete.bind(this);
     this.clickOffer = this.clickOffer.bind(this);
+    this.clickSend = this.clickSend.bind(this);
+    this.clickSaveOrderFirestore = this.clickSaveOrderFirestore.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    // this.handleShow = this.handleShow.bind(this);
   }
 
   clickTabs(category) {
@@ -115,31 +126,28 @@ class Waiter extends React.Component {
     else {
       const listOrders = createOrder(product, null, this.state.orders);
 
-      const totalPay = listOrders.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal) + parseInt(currentValue.subTotal));
-      console.log(totalPay);
+      const totalPrice = totalPay(listOrders);
 
       this.setState({ orders: listOrders });
-      this.setState({ total: totalPay });
+      this.setState({ total: totalPrice });
     }
   }
 
   clickOffer(productOffer, offer) {
     const listOrder = createOrder(productOffer, offer, this.state.orders);
-    const totalPay = listOrder.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal)+ parseInt(currentValue.subTotal));
-    console.log(totalPay);
+    const totalPrice = totalPay(listOrder);
 
     this.setState({ orders: listOrder });
-    this.setState({ total: totalPay });
+    this.setState({ total: totalPrice });
     this.setState({ offers: [] });
   }
 
   clickButtonAdd(product) {
     const arrayOrders = createOrder(product, null, this.state.orders);
-    const totalPay = arrayOrders.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal) + parseInt(currentValue.subTotal));
-    console.log(totalPay);
+    const totalPrice = totalPay(arrayOrders);
 
     this.setState({ orders: arrayOrders });
-    this.setState({ total: totalPay });
+    this.setState({ total: totalPrice });
   }
 
   clickButtonSubtrack(product) {
@@ -160,11 +168,10 @@ class Waiter extends React.Component {
         return order;
       });
 
-      const totalPay = mapProducts.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal) + parseInt(currentValue.subTotal));
-      console.log(totalPay);
+      const totalPrice = totalPay(mapProducts);
 
       this.setState({ orders: mapProducts });
-      this.setState({ total: totalPay });
+      this.setState({ total: totalPrice });
     }
 
     if (findProduct.quantity === 0) {
@@ -174,11 +181,10 @@ class Waiter extends React.Component {
 
       orders.splice(position, 1);
 
-      const totalPay = orders.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal) + parseInt(currentValue.subTotal));
-      console.log(totalPay);
+      const totalPrice = totalPay(orders);
 
       this.setState({ orders: orders });
-      this.setState({ total: totalPay });
+      this.setState({ total: totalPrice });
     }
 
   }
@@ -192,18 +198,48 @@ class Waiter extends React.Component {
 
     orders.splice(position, 1);
 
-    const totalPay = orders.reduce((accumulator, currentValue) => parseInt(accumulator.subTotal) + parseInt(currentValue.subTotal));
-    console.log(totalPay);
-    
+    const totalPrice = totalPay(orders);
+
     this.setState({ orders: orders });
-    this.setState({ total: totalPay });
+    this.setState({ total: totalPrice });
+  }
+  // Es posible eliminar porque apaga el modal y podria ser con una inicializacion
+  handleClose() {
+    this.setState({show: false});
+  }
+  // handleShow = () => this.setShow(true);
+
+  clickSend() {
+
+    if(this.state.orders.length === 0){
+      alert('No existe registros de pedidos para enviar');
+    }
+    else {
+      this.setState({ show: true});
+    }
+  }
+
+  clickSaveOrderFirestore() {
+    // const orderData = {
+    //   client: 'Juan Perez',
+    //   date: new Date(),
+    //   order: this.state.orders,
+    //   total: this.state.total,
+    //   state: false,
+    // }
+    console.log('hola Yamira');
+
   }
 
   render() {
     return (
       <main className="d-flex bd-highlight" id="waiter">
         <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} offers={this.state.offers} productOffer={this.state.productOffer} clickOffer={this.clickOffer} />
-        <RegisterOrder orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} totalPay={this.state.total}/>
+        <RegisterOrder orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} totalPay={this.state.total} clickSend = {this.clickSend}/>
+        {
+          (this.state.show) && <ModalOrder show = {this.state.show} handleClose={this.handleClose} totalPay={this.state.total} orderProduct={this.state.orders}
+          clickSaveOrderFirestore = {this.clickSaveOrderFirestore}/>
+        }
       </main>
 
     );
