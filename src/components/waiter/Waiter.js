@@ -1,5 +1,5 @@
 import React from 'react';
-import { getProducts, getOffers } from '../../firebase/firestore';
+import { getProducts, getOffers, addOrder } from '../../firebase/firestore';
 import Menu from './Menu';
 import RegisterOrder from './RegisterOrder';
 import ModalOrder from './ModalOrder';
@@ -76,9 +76,10 @@ const createOrder = (product, offer, state) => {
 }
 
 const totalPay = (orders) => {
-
   let totalPay = 0;
+
   orders.forEach((order => totalPay += order.subTotal));
+
   return totalPay;
 }
 
@@ -87,7 +88,7 @@ class Waiter extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { products: [], orders: [], offers: [], productOffer: {}, total: 0, show: false };
+    this.state = { products: [], orders: [], offers: [], productOffer: {}, total: 0, show: false, client: '', table: 1 };
 
     this.clickTabs = this.clickTabs.bind(this);
     this.clickProduct = this.clickProduct.bind(this);
@@ -97,8 +98,9 @@ class Waiter extends React.Component {
     this.clickOffer = this.clickOffer.bind(this);
     this.clickSend = this.clickSend.bind(this);
     this.clickSaveOrderFirestore = this.clickSaveOrderFirestore.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    // this.handleShow = this.handleShow.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleChangeClient = this.handleChangeClient.bind(this);
+    this.handleChangeTable = this.handleChangeTable.bind(this);
   }
 
   clickTabs(category) {
@@ -203,14 +205,12 @@ class Waiter extends React.Component {
     this.setState({ orders: orders });
     this.setState({ total: totalPrice });
   }
-  // Es posible eliminar porque apaga el modal y podria ser con una inicializacion
-  handleClose() {
-    this.setState({show: false});
+
+  handleCloseModal() {
+    this.setState({ show: false });
   }
-  // handleShow = () => this.setShow(true);
 
   clickSend() {
-
     if(this.state.orders.length === 0){
       alert('No existe registros de pedidos para enviar');
     }
@@ -219,14 +219,33 @@ class Waiter extends React.Component {
     }
   }
 
+  handleChangeClient(event) {    
+    this.setState({ client: event.target.value });  
+  }
+
+  handleChangeTable(event) {    
+    this.setState({ table: event.target.value });  
+  }
+
   clickSaveOrderFirestore() {
-    // const orderData = {
-    //   client: 'Juan Perez',
-    //   date: new Date(),
-    //   order: this.state.orders,
-    //   total: this.state.total,
-    //   state: false,
-    // }
+    const orderData = {
+      waiter: 'John Cena',
+      client: this.state.client,
+      date: new Date(),
+      order: this.state.orders,
+      table: this.state.table,
+      totalPay: this.state.total,
+      state: false,
+    }
+
+    addOrder(orderData)
+      .then((e) => {
+        console.log('Hola Lilian', e);
+      })
+      .catch((error) => {
+        console.log('Ayudanos Fares', error);
+      });
+
     console.log('hola Yamira');
 
   }
@@ -237,8 +256,8 @@ class Waiter extends React.Component {
         <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} offers={this.state.offers} productOffer={this.state.productOffer} clickOffer={this.clickOffer} />
         <RegisterOrder orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} totalPay={this.state.total} clickSend = {this.clickSend}/>
         {
-          (this.state.show) && <ModalOrder show = {this.state.show} handleClose={this.handleClose} totalPay={this.state.total} orderProduct={this.state.orders}
-          clickSaveOrderFirestore = {this.clickSaveOrderFirestore}/>
+          (this.state.show) && <ModalOrder show = {this.state.show} handleClose={this.handleCloseModal} totalPay={this.state.total} orderProduct={this.state.orders}
+          clickSaveOrderFirestore = {this.clickSaveOrderFirestore} client = {this.state.client} handleChangeClient = {this.handleChangeClient} table = {this.state.table} handleChangeTable = {this.handleChangeTable}/>
         }
       </main>
 
