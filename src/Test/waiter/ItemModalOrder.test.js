@@ -55,7 +55,6 @@ it('Deberia los datos de la tabla', () => {
     </div>);
 
 const a = order.getByTestId('item1');
-console.log(a);
 // expect(getNodeText(listaDeNodos[0])).toBe(undefined);
 
 });
