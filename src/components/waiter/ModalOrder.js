@@ -10,8 +10,6 @@ import ItemModalOrder from './ItemModalOrder';
 
 const ModalOrder = ({show, handleClose, totalPay, orderProduct, clickSaveOrderFirestore, client, handleChangeClient, table, handleChangeTable}) => {
 
-  console.log('gggggg', orderProduct);
-
   return (
     <Modal
       show={show} onHide={handleClose}
@@ -29,7 +27,7 @@ const ModalOrder = ({show, handleClose, totalPay, orderProduct, clickSaveOrderFi
         <Form>
           <Form.Group as={Row} controlId="exampleForm.SelectCustomSizeSm">
             <Form.Label column sm={2}>
-              Cliente: 
+              Cliente:
             </Form.Label>
             <Col sm={10}>
               <Form.Control placeholder="Nombre y apellido" value = {client} onChange={handleChangeClient}/>

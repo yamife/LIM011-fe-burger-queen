@@ -8,7 +8,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.4.1",
     "firebase": "^7.10.0",
@@ -40,6 +39,8 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^9.5.0",
+    "firestore-jest-mock": "^0.3.0",
     "htmlhint": "^0.11.0"
   }
 }

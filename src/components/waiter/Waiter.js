@@ -219,12 +219,12 @@ class Waiter extends React.Component {
     }
   }
 
-  handleChangeClient(event) {    
-    this.setState({ client: event.target.value });  
+  handleChangeClient(event) {
+    this.setState({ client: event.target.value });
   }
 
-  handleChangeTable(event) {    
-    this.setState({ table: event.target.value });  
+  handleChangeTable(event) {
+    this.setState({ table: event.target.value });
   }
 
   clickSaveOrderFirestore() {
@@ -252,11 +252,11 @@ class Waiter extends React.Component {
 
   render() {
     return (
-      <main className="d-flex bd-highlight" id="waiter">
+      <main className="d-flex bd-highlight" data-testid="waiter">
         <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} offers={this.state.offers} productOffer={this.state.productOffer} clickOffer={this.clickOffer} />
         <RegisterOrder orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} totalPay={this.state.total} clickSend = {this.clickSend}/>
         {
-          (this.state.show) && <ModalOrder show = {this.state.show} handleClose={this.handleCloseModal} totalPay={this.state.total} orderProduct={this.state.orders}
+          <ModalOrder show = {this.state.show} handleClose={this.handleCloseModal} totalPay={this.state.total} orderProduct={this.state.orders}
           clickSaveOrderFirestore = {this.clickSaveOrderFirestore} client = {this.state.client} handleChangeClient = {this.handleChangeClient} table = {this.state.table} handleChangeTable = {this.handleChangeTable}/>
         }
       </main>

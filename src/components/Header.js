@@ -4,7 +4,7 @@ import img from '../img/logo.png';
 class Header extends React.Component {
     render(){
         return(
-            <header>
+            <header data-testid = 'logo'>
                 <nav className="navbar navbar-light bg-light">
                     <a className="navbar-brand" href="./">
                         <img src={img} width="30" height="30" className="d-inline-block align-top" alt="" />Burger Queen

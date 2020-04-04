@@ -4,7 +4,7 @@ import Waiter from './components/waiter/Waiter';
 
 function App() {
   return(
-    <div>
+    <div data-testid = 'app'>
       <Header />
       <Waiter />
     </div>
