@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, fireEvent, getNodeText } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import ItemMenu from '../../components/waiter/ItemMenu';
+import ItemMenu from '../../components/waiter/menu/ItemMenu';
+
 
 it('Deberia mostrar boton con el nombre del producto y precio', () => {
     const fnclickProduct = jest.fn();

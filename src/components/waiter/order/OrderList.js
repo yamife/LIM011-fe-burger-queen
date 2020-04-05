@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemOrder from './order/ItemOrder';
+import ItemOrder from './ItemOrder';
 
 
 class OrderList extends React.Component {

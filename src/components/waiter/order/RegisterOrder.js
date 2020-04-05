@@ -1,6 +1,6 @@
 import React from 'react';
-import WaiterData from './order/WaiterData';
-import OrderList from './order/OrderList';
+import WaiterData from './WaiterData';
+import OrderList from './OrderList';
 
 
 class RegisterOrder extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import MenuTabs from '../../components/waiter/MenuTabs';
+import MenuTabs from '../../components/waiter/menu/MenuTabs';
 
 
 it('Debería mostrar los botones segun las categorias', () => {

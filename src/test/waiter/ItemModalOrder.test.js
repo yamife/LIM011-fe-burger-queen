@@ -3,7 +3,7 @@ import React from 'react';
 import { render, getNodeText } from '@testing-library/react';
 // import { act } from 'react-dom/test-utils';
 
-import ItemModalOrder from '../../components/waiter/ItemModalOrder';
+import ItemModalOrder from '../../components/waiter/order/ItemModalOrder';
 
 // let container = null;
 // beforeEach(() => {
