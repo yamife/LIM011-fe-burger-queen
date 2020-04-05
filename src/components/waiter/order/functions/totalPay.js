@@ -1,3 +1,4 @@
+
 const totalPay = (orders) => {
   let totalPay = 0;
 
@@ -5,5 +6,6 @@ const totalPay = (orders) => {
 
   return totalPay;
 }
+
 
 export default totalPay;

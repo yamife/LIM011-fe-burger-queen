@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.2.0",
     "@testing-library/react": "^9.5.0",
     "firestore-jest-mock": "^0.3.0",
     "htmlhint": "^0.11.0"

@@ -1,3 +1,4 @@
+
 const createOrder = (product, offer, state) => {
 
   if (offer !== null) {
@@ -67,5 +68,6 @@ const createOrder = (product, offer, state) => {
 
   return arrayOrder;
 }
+
 
 export default createOrder;

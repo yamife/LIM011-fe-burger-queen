@@ -1,10 +1,10 @@
 import React from 'react';
 import { getProducts, getOffers, addOrder } from '../../firebase/firestore';
-import createOrder from '../../function/createOrder';
-import totalPay from '../../function/totalPay';
-import Menu from './Menu';
-import RegisterOrder from './RegisterOrder';
-import ModalOrder from './ModalOrder';
+import createOrder from './order/functions/createOrder';
+import totalPay from './order/functions/totalPay';
+import Menu from './menu/Menu';
+import RegisterOrder from './order/RegisterOrder';
+import ModalOrder from './order/ModalOrder';
 
 
 class Waiter extends React.Component {

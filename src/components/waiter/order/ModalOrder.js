@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
-import ItemModalOrder from './ItemModalOrder';
+import ItemModalOrder from './order/ItemModalOrder';
 
 
 const ModalOrder = ({show, handleClose, totalPay, orderProduct, clickSaveOrderFirestore, client, handleChangeClient, table, handleChangeTable}) => {
