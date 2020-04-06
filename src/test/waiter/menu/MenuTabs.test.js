@@ -24,38 +24,48 @@ it('Debería retornar el componente MenuTabs como un valor verdadero de acuerdo 
 // fireEvent[eventName](node: HTMLElement, eventProperties: Object): Ejecuta un evento 
 // del DOM. Establece propiedades determinadas del evento.
 
+// toHaveBeenCalled(): Permite asegurar de que se llamó a una función simulada.
+
 
 it('Debería ejecutarse la función clickTabs al dar click al botón Desayuno.', () => {
-  const clickTabs = jest.fn;
+  const clickTabs = jest.fn();
 
   const { getByTestId } = render(<MenuTabs clickTabs = { clickTabs }/>);
 
-  expect(fireEvent.click(getByTestId('breakfast'))).toBe(true);
+  fireEvent.click(getByTestId('breakfast'));
+
+  expect(clickTabs).toHaveBeenCalled();
 });
 
 
 it('Debería ejecutarse la función clickTabs al dar click al botón Hamburguesas.', () => {
-  const clickTabs = jest.fn;
+  const clickTabs = jest.fn();
 
-  const { getByTestId } = render(<MenuTabs clickTabs = { clickTabs }/>);
+  const { getByTestId } = render(<MenuTabs clickTabs={clickTabs}/>);
+  
+  fireEvent.click(getByTestId('burger'));
 
-  expect(fireEvent.click(getByTestId('burger'))).toBe(true);
+  expect(clickTabs).toHaveBeenCalled();
 });
 
 
 it('Debería ejecutarse la función clickTabs al dar click al botón Acompañamiento.', () => {
-  const clickTabs = jest.fn;
+  const clickTabs = jest.fn();
 
   const { getByTestId } = render(<MenuTabs clickTabs = { clickTabs }/>);
 
-  expect(fireEvent.click(getByTestId('sideDish'))).toBe(true);
+  fireEvent.click(getByTestId('sideDish'));
+
+  expect(clickTabs).toHaveBeenCalled();
 });
 
 
 it('Debería ejecutarse la función clickTabs al dar click al botón Bebidas.', () => {
-  const clickTabs = jest.fn;
+  const clickTabs = jest.fn();
 
   const { getByTestId } = render(<MenuTabs clickTabs = { clickTabs }/>);
 
-  expect(fireEvent.click(getByTestId('drinks'))).toBe(true);
+  fireEvent.click(getByTestId('drinks'));
+
+  expect(clickTabs).toHaveBeenCalled();
 });

@@ -8,7 +8,7 @@ const ItemMenu = (props) => {
 
   return (
     <li>
-      <button data-testid = "item" className="btn btn-outline-dark" onClick={() => clickProduct(props.value)}>
+      <button data-testid="button" className="btn btn-outline-dark" onClick={() => clickProduct(props.value)}>
       { nameProduct } S/. { price }
       </button>
     </li>

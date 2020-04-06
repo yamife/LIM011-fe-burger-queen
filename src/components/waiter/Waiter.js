@@ -160,12 +160,20 @@ class Waiter extends React.Component {
       totalPay: this.state.total,
       state: false,
     }
+
     if(!this.state.client){
-      alert('No se ha registrado nombre del cliente')
+      alert('Por favor registre el nombre del cliente.')
     }
     else {
-      addOrder(orderData);
+      addOrder(orderData)
+        .then(() => alert('Orden añadida.'))
+        .catch(() => alert('Error al registrar la orden.'));
+
       this.setState({ show: false });
+      this.setState({ client: '' });
+      this.setState({ table: 1 });
+      this.setState({ orders: [] });
+      this.setState({ total: 0 });
     }
   }
 
