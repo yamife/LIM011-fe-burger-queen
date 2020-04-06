@@ -34,37 +34,6 @@ class Waiter extends React.Component {
   }
 
   clickProduct(product) {
-<<<<<<< HEAD
-
-    const pos = this.state.orders.findIndex(element => element.id === product.id);
-
-    if(pos !== -1) {
-      
-      const element = this.state.orders.find(element => element.id === product.id);
-
-      const order = {
-        id: product.id,
-        nameProduct: product.nameProduct,
-        price: product.price,
-        counter: element.counter += 1,
-      }
-
-      this.state.orders.splice(pos, 1, order);
-
-      this.setState({ orders: this.state.orders });
-    }
-    else {
-      const order = {
-        id: product.id,
-        nameProduct: product.nameProduct,
-        price: product.price,
-        counter: 1,
-      }
-
-      const arrayOrder = this.state.orders.concat(order);
-
-      this.setState({ orders: arrayOrder });
-=======
     if (product.offer) {
       getOffers(product.category)
         .then(data => this.setState(
@@ -205,7 +174,6 @@ class Waiter extends React.Component {
       this.setState({ table: 1 });
       this.setState({ orders: [] });
       this.setState({ total: 0 });
->>>>>>> 040c6c1dc269b56cd0cd6bc0c682d5c4fc89cfdb
     }
   }
 
