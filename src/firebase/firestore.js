@@ -1,23 +1,42 @@
 import db from './controller';
 
 
-const getProducts = (category) => {
+export const getProducts = (category) => {
   return db.collection('products').where('category', '==', category).get()
-  .then((response) => {
-    const arr = [];
+    .then((response) => {
+      const arrayProduct = [];
 
-    response.docs.forEach(doc => {
-      const obj = {
-        id: doc.id,
-        ...doc.data()
-      };
-      
-      arr.push(obj);
-    });
+      response.docs.forEach(doc => {
+        const product = {
+          id: doc.id,
+          ...doc.data()
+        };
 
-    return arr;
-  })
+        arrayProduct.push(product);
+      });
+
+      return arrayProduct;
+    })
 };
 
 
-export default getProducts;
+export const getOffers = (category) => {
+  return db.collection('offers').where('category', '==', category).get()
+    .then((response) => {
+      const arrayOffers = [];
+
+      response.docs.forEach(doc => {
+        const offer = {
+          id: doc.id,
+          ...doc.data()
+        };
+
+        arrayOffers.push(offer);
+      });
+
+      return arrayOffers;
+    })
+};
+
+
+export const addOrder = objectOrder => db.collection('pruebaOrder').add(objectOrder);

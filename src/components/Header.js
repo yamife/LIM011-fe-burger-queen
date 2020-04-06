@@ -1,18 +1,19 @@
 import React from 'react';
 import img from '../img/logo.png';
 
+
 class Header extends React.Component {
     render(){
         return(
-            <header>
+            <header data-testid = 'header'>
                 <nav className="navbar navbar-light bg-light">
                     <a className="navbar-brand" href="./">
-                        <img src={img} width="30" height="30" className="d-inline-block align-top" alt="" />Burger Queen
+                        <img src={img} width="30" height="30" className="d-inline-block align-top" alt="" data-testid="img"/>Burger Queen
                     </a>
 
                     <ul className="nav nav-pills nav-end">
                     <li className="nav-item">
-                        <a className="nav-link active" href="./">Inicio</a>
+                        <a className="nav-link" href="./">Inicio</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="./">Menú</a>
@@ -30,5 +31,6 @@ class Header extends React.Component {
     }
 
 }
+
 
 export default Header;
