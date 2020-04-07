@@ -7,7 +7,7 @@ class OrderList extends React.Component {
   render() {
     const arrayOrder = this.props.orderProduct;
     const clickButtonAdd = this.props.clickButtonAdd;
-    const clickButtonSubtrack = this.props.clickButtonSubtrack;
+    const clickButtonSubtract = this.props.clickButtonSubtract;
     const clickButtonDelete = this.props.clickButtonDelete;
     const totalPay = this.props.totalPay;
     const clickSend = this.props.clickSend;
@@ -28,7 +28,7 @@ class OrderList extends React.Component {
               </thead>
               <tbody>
                 {
-                  arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickButtonAdd={clickButtonAdd}  clickButtonSubtrack = { clickButtonSubtrack } clickButtonDelete = {clickButtonDelete}/>)
+                  arrayOrder.map((order) => <ItemOrder key={order.id} value={order} clickButtonAdd={clickButtonAdd}  clickButtonSubtract = { clickButtonSubtract } clickButtonDelete = {clickButtonDelete}/>)
                 }
               </tbody>
             </table>

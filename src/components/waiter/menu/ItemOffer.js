@@ -7,7 +7,7 @@ const ItemOffer = (props) => {
   const valueOffer = props.value;
 
   return (
-    <li>
+    <li data-testid="item-offer">
       <button data-testid = "button" className="btn btn-outline-dark" onClick={ () => clickOffer(productOffer, valueOffer) }>
       {valueOffer.nameOffer} S/. {valueOffer.price}
       </button>

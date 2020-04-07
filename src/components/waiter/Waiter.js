@@ -16,7 +16,7 @@ class Waiter extends React.Component {
     this.clickTabs = this.clickTabs.bind(this);
     this.clickProduct = this.clickProduct.bind(this);
     this.clickButtonAdd = this.clickButtonAdd.bind(this);
-    this.clickButtonSubtrack = this.clickButtonSubtrack.bind(this);
+    this.clickButtonSubtract = this.clickButtonSubtract.bind(this);
     this.clickButtonDelete = this.clickButtonDelete.bind(this);
     this.clickOffer = this.clickOffer.bind(this);
     this.clickSend = this.clickSend.bind(this);
@@ -75,7 +75,7 @@ class Waiter extends React.Component {
     this.setState({ total: totalPrice });
   }
 
-  clickButtonSubtrack(product) {
+  clickButtonSubtract(product) {
     const findProduct = this.state.orders.find((element) => element.id === product.id);
 
     if (findProduct.quantity >= 1) {
@@ -181,7 +181,7 @@ class Waiter extends React.Component {
     return (
       <main className="d-flex bd-highlight" data-testid="waiter">
         <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} offers={this.state.offers} productOffer={this.state.productOffer} clickOffer={this.clickOffer} />
-        <RegisterOrder orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtrack={this.clickButtonSubtrack} clickButtonDelete={this.clickButtonDelete} totalPay={this.state.total} clickSend = {this.clickSend}/>
+        <RegisterOrder orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtract={this.clickButtonSubtract} clickButtonDelete={this.clickButtonDelete} totalPay={this.state.total} clickSend = {this.clickSend}/>
         {
           <ModalOrder show = {this.state.show} handleClose={this.handleCloseModal} totalPay={this.state.total} orderProduct={this.state.orders}
           clickSaveOrderFirestore = {this.clickSaveOrderFirestore} client = {this.state.client} handleChangeClient = {this.handleChangeClient} table = {this.state.table} handleChangeTable = {this.handleChangeTable}/>

@@ -1,7 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import Waiter from '../../components/waiter/Waiter';
+
+
+afterEach(cleanup);
 
 
 it('Debería retornar el componente Waiter como un valor verdadero de acuerdo al id proporcionado.', () => {

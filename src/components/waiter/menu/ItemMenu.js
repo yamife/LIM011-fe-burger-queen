@@ -7,7 +7,7 @@ const ItemMenu = (props) => {
   const price = props.value.price;
 
   return (
-    <li>
+    <li data-testid="item-menu">
       <button data-testid="button" className="btn btn-outline-dark" onClick={() => clickProduct(props.value)}>
       { nameProduct } S/. { price }
       </button>

@@ -52,6 +52,7 @@
     "eslint-plugin-react": "^7.19.0",
     "firestore-jest-mock": "^0.3.0",
     "htmlhint": "^0.11.0",
+    "jest": "^25.2.7",
     "react-test-renderer": "^16.13.1"
   }
 }
