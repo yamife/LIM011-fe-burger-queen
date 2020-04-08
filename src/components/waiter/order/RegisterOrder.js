@@ -6,7 +6,7 @@ import OrderList from './OrderList';
 class RegisterOrder extends React.Component {
 
   render() {
-    const orderProduct = this.props.orderProduct;
+    const orders = this.props.orderProduct;
     const clickButtonAdd = this.props.clickButtonAdd;
     const clickButtonSubtract = this.props.clickButtonSubtract;
     const clickButtonDelete = this.props.clickButtonDelete;
@@ -14,9 +14,9 @@ class RegisterOrder extends React.Component {
     const clickSend = this.props.clickSend;
 
     return (
-      <section>
+      <section data-testid="register-order">
         <WaiterData />
-        <OrderList orderProduct={orderProduct} clickButtonAdd={clickButtonAdd} clickButtonSubtract={clickButtonSubtract} clickButtonDelete={clickButtonDelete} totalPay={totalPay} clickSend = {clickSend}/>
+        <OrderList orders={orders} clickButtonAdd={clickButtonAdd} clickButtonSubtract={clickButtonSubtract} clickButtonDelete={clickButtonDelete} totalPay={totalPay} clickSend = {clickSend}/>
       </section>
     );
   }

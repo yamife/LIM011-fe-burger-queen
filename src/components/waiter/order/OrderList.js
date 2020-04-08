@@ -5,7 +5,7 @@ import ItemOrder from './ItemOrder';
 class OrderList extends React.Component {
 
   render() {
-    const arrayOrder = this.props.orderProduct;
+    const arrayOrder = this.props.orders;
     const clickButtonAdd = this.props.clickButtonAdd;
     const clickButtonSubtract = this.props.clickButtonSubtract;
     const clickButtonDelete = this.props.clickButtonDelete;
@@ -13,7 +13,7 @@ class OrderList extends React.Component {
     const clickSend = this.props.clickSend;
 
     return (
-      <section className="p-2 flex-fill bd-highlight">
+      <section data-testid="order-list" className="p-2 flex-fill bd-highlight">
         <div className="container">
           <h1>Registro de Pedidos</h1>
             <table className="table">
@@ -33,8 +33,8 @@ class OrderList extends React.Component {
               </tbody>
             </table>
             <div>
-              <h2>Total S/. {totalPay}</h2>
-              <button className="btn btn-info" onClick = {() => clickSend()} ><h5>Enviar</h5></button>
+              <h2 data-testid="total-pay">Total S/. {totalPay}</h2>
+              <button data-testid="button-send" className="btn btn-info" onClick = {() => clickSend()} ><h5>Enviar</h5></button>
             </div>
         </div>
       </section>

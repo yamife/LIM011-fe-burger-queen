@@ -11,18 +11,18 @@ const MenuList = (props) => {
   const clickOffer = props.clickOffer;
 
   return (
-    <div>
+    <div data-testid="menu-list">
       <div>
         <ul id="item-list">
           {
-            (products) && products.map((order) =>
-              <ItemMenu key = { order.id } value = { order } clickProduct = { clickProduct }/>
+            (products) && products.map((product) =>
+              <ItemMenu key = { product.id } value = { product } clickProduct = { clickProduct }/>
             )
           }
         </ul>
       </div>
         {
-          ( offers !== null && offers.length > 0) && <OfferList offers = { offers } clickOffer = { clickOffer } productOffer = { productOffer }/>
+          (offers.length > 0) && <OfferList offers = { offers } clickOffer = { clickOffer } productOffer = { productOffer }/>
         }
     </div>
   );

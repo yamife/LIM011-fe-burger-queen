@@ -28,9 +28,10 @@ class Waiter extends React.Component {
 
   clickTabs(category) {
     getProducts(category)
-      .then(data => this.setState(
-        { products: data }
-      ));
+      .then(data => {
+        this.setState({ products: data });
+        this.setState({ offers: [] });
+    });
   }
 
   clickProduct(product) {
@@ -183,7 +184,7 @@ class Waiter extends React.Component {
         <Menu clickTabs={this.clickTabs} products={this.state.products} clickProduct={this.clickProduct} offers={this.state.offers} productOffer={this.state.productOffer} clickOffer={this.clickOffer} />
         <RegisterOrder orderProduct={this.state.orders} clickButtonAdd={this.clickButtonAdd} clickButtonSubtract={this.clickButtonSubtract} clickButtonDelete={this.clickButtonDelete} totalPay={this.state.total} clickSend = {this.clickSend}/>
         {
-          <ModalOrder show = {this.state.show} handleClose={this.handleCloseModal} totalPay={this.state.total} orderProduct={this.state.orders}
+          <ModalOrder show = {this.state.show} handleClose={this.handleCloseModal} totalPay={this.state.total} orders={this.state.orders}
           clickSaveOrderFirestore = {this.clickSaveOrderFirestore} client = {this.state.client} handleChangeClient = {this.handleChangeClient} table = {this.state.table} handleChangeTable = {this.handleChangeTable}/>
         }
       </main>

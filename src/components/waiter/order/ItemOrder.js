@@ -7,7 +7,7 @@ const ItemOrder = (props) => {
     <tr data-testid="item-table-order">
       <td data-testid="item1">
         <button data-testid="button-add" className="btn btn-outline-danger btn-sm" onClick = { () => props.clickButtonAdd(props.value)}>+</button>
-        <p data-testid="quantity">{props.value.quantity}</p>
+        {props.value.quantity}
         <button data-testid="button-subtract" className="btn btn-outline-danger btn-sm" onClick = { () => props.clickButtonSubtract(props.value) }>-</button>
       </td>
       <td data-testid="item2">{props.value.nameProduct}</td>

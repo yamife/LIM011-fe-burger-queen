@@ -8,7 +8,7 @@ const OfferList = (props) => {
   const clickOffer = props.clickOffer;
 
   return (
-    <div>
+    <div data-testid="offer-list">
       <h3>Oferta</h3>
       <ul id="item-list">
         {
@@ -17,7 +17,7 @@ const OfferList = (props) => {
           )
         }
         <li>
-          <button className="btn btn-outline-dark" onClick={ () => props.clickOffer(props.productOffer, null) }>Ninguno</button>
+          <button data-testid="button-none" className="btn btn-outline-dark" onClick={ () => props.clickOffer(props.productOffer, null) }>Ninguno</button>
         </li>
       </ul>
     </div>
