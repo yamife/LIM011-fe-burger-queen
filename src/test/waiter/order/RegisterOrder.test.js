@@ -22,7 +22,7 @@ const orderProduct = [{
 
 
 it('Debería retornar el componente RegisterOrder como un valor verdadero de acuerdo al id proporcionado.', () => {
-    const { getByTestId } = render(<RegisterOrder orderProduct={orderProduct} totalPay={16} />);
+    const { getByTestId } = render(<RegisterOrder orders={orderProduct} totalPay={16} />);
     
     const component = getByTestId('register-order');
 

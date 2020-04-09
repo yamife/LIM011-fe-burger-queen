@@ -1,15 +1,11 @@
 import React from 'react';
 import ItemMenu from './ItemMenu';
 import OfferList from './OfferList';
+import PropTypes from 'prop-types';
 
 
-const MenuList = (props) => {
-  const products = props.products;
-  const clickProduct = props.clickProduct;
-  const offers = props.offers;
-  const productOffer = props.productOffer;
-  const clickOffer = props.clickOffer;
-
+function MenuList ({ clickProduct, clickOffer, products, offers, productOffer }) {
+  
   return (
     <div data-testid="menu-list">
       <div>
@@ -27,6 +23,15 @@ const MenuList = (props) => {
     </div>
   );
 }
+
+
+MenuList.propTypes = {
+  clickProduct: PropTypes.func.isRequired,
+  clickOffer: PropTypes.func.isRequired,
+  products: PropTypes.array.isRequired,
+  offers: PropTypes.array.isRequired,
+  productOffer: PropTypes.object.isRequired,
+};
 
 
 export default MenuList;

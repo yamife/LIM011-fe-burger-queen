@@ -1,19 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
-const ItemMenu = (props) => {
-  const clickProduct = props.clickProduct;
-  const nameProduct = props.value.nameProduct;
-  const price = props.value.price;
-
+function ItemMenu ({clickProduct, value}) {
   return (
     <li data-testid="item-menu">
-      <button data-testid="button" className="btn btn-outline-dark" onClick={() => clickProduct(props.value)}>
-      { nameProduct } S/. { price }
+      <button data-testid="button" className="btn btn-outline-dark" onClick={() => clickProduct(value)}>
+      { value.nameProduct } S/. { value.price }
       </button>
     </li>
   );
 }
+
+
+ItemMenu.propTypes = {
+  clickProduct: PropTypes.func.isRequired,
+  value: PropTypes.shape({
+    nameProduct: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
 
 export default ItemMenu;

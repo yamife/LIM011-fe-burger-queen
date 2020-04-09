@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
-const MenuTabs = (props) => {
-  const clickTabs = props.clickTabs;
+function MenuTabs ({ clickTabs }) {
 
   return (
     <div data-testid="menu-tabs">
@@ -17,6 +17,11 @@ const MenuTabs = (props) => {
     </div>
   );
 }
+
+
+MenuTabs.propTypes = {
+  clickTabs: PropTypes.func.isRequired,
+};
 
 
 export default MenuTabs;

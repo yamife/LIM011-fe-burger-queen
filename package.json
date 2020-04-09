@@ -12,6 +12,7 @@
     "babel-core": "^6.26.3",
     "bootstrap": "^4.4.1",
     "firebase": "^7.10.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.0",
@@ -22,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage --verbose",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint": "eslint --ext .js src/ src/test/"
   },
   "eslintConfig": {
     "extends": "react-app"

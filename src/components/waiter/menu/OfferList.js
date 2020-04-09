@@ -1,11 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ItemOffer from './ItemOffer';
 
 
-const OfferList = (props) => {
-  const offers = props.offers;
-  const productOffer = props.productOffer;
-  const clickOffer = props.clickOffer;
+function OfferList ({ clickOffer, offers, productOffer }) {
 
   return (
     <div data-testid="offer-list">
@@ -17,12 +15,19 @@ const OfferList = (props) => {
           )
         }
         <li>
-          <button data-testid="button-none" className="btn btn-outline-dark" onClick={ () => props.clickOffer(props.productOffer, null) }>Ninguno</button>
+          <button data-testid="button-none" className="btn btn-outline-dark" onClick={ () => clickOffer(productOffer, null) }>Ninguno</button>
         </li>
       </ul>
     </div>
   );
 }
+
+
+OfferList.propTypes = {
+  clickOffer: PropTypes.func.isRequired,
+  offers: PropTypes.array.isRequired,
+  productOffer: PropTypes.object.isRequired
+};
 
 
 export default OfferList;

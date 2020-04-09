@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -76,6 +77,19 @@ const ModalOrder = ({ show, handleClose, totalPay, orders, clickSaveOrderFiresto
     </section>
   );
 }
+
+
+ModalOrder.propTypes = {
+  handleClose: PropTypes.func.isRequired,
+  clickSaveOrderFirestore: PropTypes.func.isRequired,
+  handleChangeClient: PropTypes.func.isRequired,
+  handleChangeTable: PropTypes.func.isRequired,
+  orders: PropTypes.array.isRequired,
+  show: PropTypes.bool.isRequired,
+  client: PropTypes.string.isRequired,
+  table: PropTypes.number.isRequired,
+  totalPay: PropTypes.number.isRequired
+};
 
 
 export default ModalOrder;
